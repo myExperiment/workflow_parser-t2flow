@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: T2Flow::Model</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/t2flow/model_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/t2flow/model.rb">lib/t2flow/model.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000000">::new</a></li>
+					
+					<li><a href="#M000007">#annotations</a></li>
+					
+					<li><a href="#M000003">#beanshells</a></li>
+					
+					<li><a href="#M000011">#coordinations</a></li>
+					
+					<li><a href="#M000002">#dataflow</a></li>
+					
+					<li><a href="#M000012">#dataflow_id</a></li>
+					
+					<li><a href="#M000004">#datalinks</a></li>
+					
+					<li><a href="#M000008">#processors</a></li>
+					
+					<li><a href="#M000010">#sinks</a></li>
+					
+					<li><a href="#M000009">#sources</a></li>
+					
+					<li><a href="#M000001">#top_level</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../LICENCE.html">LICENCE</a></li>
+				
+					<li class="file"><a href="../README.html">README</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../T2Flow/Coordination.html">T2Flow::Coordination</a></li>
+				
+					<li><a href="../T2Flow/Dataflow.html">T2Flow::Dataflow</a></li>
+				
+					<li><a href="../T2Flow/DataflowAnnotation.html">T2Flow::DataflowAnnotation</a></li>
+				
+					<li><a href="../T2Flow/Datalink.html">T2Flow::Datalink</a></li>
+				
+					<li><a href="../T2Flow/Dot.html">T2Flow::Dot</a></li>
+				
+					<li><a href="../T2Flow/Model.html">T2Flow::Model</a></li>
+				
+					<li><a href="../T2Flow/Parser.html">T2Flow::Parser</a></li>
+				
+					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
+				
+					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
+				
+					<li><a href="../T2Flow/Source.html">T2Flow::Source</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">T2Flow::Model</h1>
+
+		<div id="description">
+			<p>
+The model for a given Taverna 2 workflow.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="dataflows-attribute-method" class="method-detail">
+				<a name="dataflows"></a>
+				
+				<a name="dataflows="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">dataflows</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+The list of all the dataflows that make up the workflow.
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="dependencies-attribute-method" class="method-detail">
+				<a name="dependencies"></a>
+				
+				<a name="dependencies="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">dependencies</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+The list of any dependencies that have been found inside the workflow.
+</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="M000000"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Creates an empty model for a Taverna 2 workflow.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+15:       <span class="ruby-ivar">@dataflows</span> = []
+16:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="annotations-method" class="method-detail ">
+				<a name="M000007"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">annotations</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the annotations within the workflow. In the event that the
+workflow is nested, retrieve the top-level annotations.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="annotations-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 54</span>
+54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotations</span>
+55:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">annotations</span>
+56:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="beanshells-method" class="method-detail ">
+				<a name="M000003"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">beanshells</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the processors containing beanshells within the workflow.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="beanshells-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 30</span>
+30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">beanshells</span>
+31:       <span class="ruby-identifier">beanshells</span> = []
+32:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> 
+33:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">beanshells</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">bean</span><span class="ruby-operator">|</span>
+34:           <span class="ruby-identifier">beanshells</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">bean</span>
+35:         }
+36:       }
+37:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">beanshells</span>
+38:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="coordinations-method" class="method-detail ">
+				<a name="M000011"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">coordinations</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the coordinations within the workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="coordinations-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 92</span>
+ 92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">coordinations</span>
+ 93:       <span class="ruby-identifier">coordinations</span> =[]
+ 94:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+ 95:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">coordinations</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">coordination</span><span class="ruby-operator">|</span>
+ 96:           <span class="ruby-identifier">coordinations</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">coordination</span>
+ 97:         }
+ 98:       }
+ 99:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">coordinations</span>
+100:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="dataflow-method" class="method-detail ">
+				<a name="M000002"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dataflow</span><span
+						class="method-args">(df_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the dataflow with the given ID
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="dataflow-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 24</span>
+24:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dataflow</span>(<span class="ruby-identifier">df_id</span>)
+25:       <span class="ruby-identifier">df</span> = <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">dataflow_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">df_id</span> }
+26:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">df</span>[<span class="ruby-value">0</span>]
+27:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="dataflow-id-method" class="method-detail ">
+				<a name="M000012"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dataflow_id</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the unique dataflow ID for the top level dataflow.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="dataflow-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 103</span>
+103:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dataflow_id</span>
+104:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">dataflow_id</span>
+105:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="datalinks-method" class="method-detail ">
+				<a name="M000004"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">datalinks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the datalinks within the workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="datalinks-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 41</span>
+41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">datalinks</span>
+42:       <span class="ruby-identifier">links</span> = []
+43:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+44:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">link</span><span class="ruby-operator">|</span>
+45:           <span class="ruby-identifier">links</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">link</span>
+46:         }
+47:       }
+48:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">links</span>
+49:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="processors-method" class="method-detail ">
+				<a name="M000008"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">processors</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the processors within the workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="processors-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">processors</span>
+60:       <span class="ruby-identifier">procs</span> =[]
+61:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+62:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>
+63:           <span class="ruby-identifier">procs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proc</span>
+64:         }
+65:       }
+66:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">procs</span>
+67:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="sinks-method" class="method-detail ">
+				<a name="M000010"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">sinks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the sinks within the workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="sinks-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 81</span>
+81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sinks</span>
+82:       <span class="ruby-identifier">sinks</span> =[]
+83:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+84:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sink</span><span class="ruby-operator">|</span>
+85:           <span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sink</span>
+86:         }
+87:       }
+88:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sinks</span>
+89:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="sources-method" class="method-detail ">
+				<a name="M000009"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">sources</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the sources within the workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="sources-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 70</span>
+70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources</span>
+71:       <span class="ruby-identifier">sources</span> =[]
+72:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+73:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span>
+74:           <span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span>
+75:         }
+76:       }
+77:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>
+78:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="top-level-method" class="method-detail ">
+				<a name="M000001"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">top_level</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the top-level dataflow ie the MAIN (containing) dataflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="top-level-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">top_level</span>
+20:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>]
+21:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
