@@ -1,7 +1,7 @@
 = Taverna[http://taverna.sourceforge.net] 2 Interaction Gem
 
 Author::        Emmanuel Tagarira
-Version::       0.0.2
+Version::       0.0.3
 Contact::       mailto:emmanuel.tagarira@student.manchester.ac.uk
 URL::           http://taverna.sourceforge.net/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)

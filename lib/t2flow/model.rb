@@ -227,7 +227,7 @@ module T2Flow # :nodoc:
   # A string that does not contain a colon can often be returned, signifiying
   # a workflow source as opposed to that of a processor.
   class Source
-  	attr_accessor :name
+  	attr_accessor :name, :descriptions, :example_values
   end
   
   
@@ -238,7 +238,7 @@ module T2Flow # :nodoc:
   # A string that does not contain a colon can often be returned, signifiying
   # a workflow sink as opposed to that of a processor.
   class Sink
-	  attr_accessor :name
+	  attr_accessor :name, :descriptions, :example_values
   end  	
 
 end

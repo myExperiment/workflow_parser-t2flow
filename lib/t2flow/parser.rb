@@ -81,21 +81,51 @@ module T2Flow
       port.each do |elt|
         case elt.name
           when "name": source.name = elt.content
-        end
-      end
-
+          when "annotations"
+            elt.each do |ann|
+              node = LibXML::XML::Parser.string("#{ann}").parse
+              content_node = node.find_first("//annotationBean")
+              content = content_node.child.next.content
+      
+              case content_node["class"]
+                when /freetextdescription/i
+                  source.descriptions = [] unless source.descriptions
+                  source.descriptions << content
+                when /examplevalue/i
+                  source.example_values = [] unless source.example_values
+                  source.example_values << content
+              end # case
+            end # elt.each
+        end # case
+      end # port.each
+      
       dataflow.sources << source
     end
     
     def add_sink(dataflow, port) # :nodoc:
       sink = Sink.new
-
+      
       port.each do |elt|
         case elt.name
           when "name": sink.name = elt.content
-        end
-      end
-
+          when "annotations"
+            elt.each do |ann|
+              node = LibXML::XML::Parser.string("#{ann}").parse
+              content_node = node.find_first("//annotationBean")
+              content = content_node.child.next.content
+      
+              case content_node["class"]
+                when /freetextdescription/i
+                  sink.descriptions = [] unless sink.descriptions
+                  sink.descriptions << content
+                when /examplevalue/i
+                  sink.example_values = [] unless sink.example_values
+                  sink.example_values << content
+              end # case
+            end # elt.each
+        end # case
+      end # port.each
+      
       dataflow.sinks << sink
     end
     
