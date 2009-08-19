@@ -2,7 +2,7 @@
 
 spec = Gem::Specification.new do |s| 
   s.name = "taverna-t2flow"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.date = "2009-08-18"
   s.summary = "Support for interacting with the Taverna 2 workflow system (T2Flow)."
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows.  An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."

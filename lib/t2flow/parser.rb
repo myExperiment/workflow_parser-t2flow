@@ -4,15 +4,19 @@ module T2Flow
   
   class Parser
     # Returns the model for the given t2flow_file.
-    # The method accepts objects of classes File and String only.
+    # The method accepts objects of classes File, StringIO and String only.
     # ===Usage
     #   foo = ... # stuff to initialize foo here
     #   bar = T2Flow::Parser.new.parse(foo)
     def parse(t2flow)
       case t2flow.class.to_s
-        when /string/i: document = LibXML::XML::Parser.string(t2flow).parse 
-        when /file/i: document = LibXML::XML::Parser.string(t2flow.read).parse
-        else raise "Error parsing file."
+        when /^string$/i
+          document = LibXML::XML::Parser.string(t2flow).parse 
+        when /^stringio|file$/i
+          t2flow.rewind
+          document = LibXML::XML::Parser.string(t2flow.read).parse 
+        else 
+          raise "Error parsing file."
       end
 
       root = document.root

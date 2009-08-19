@@ -59,7 +59,7 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#M000021">#parse</a></li>
+					<li><a href="#M000023">#parse</a></li>
 					
 				</ul>
 			</div>
@@ -147,7 +147,7 @@
 
 		
 			<div id="parse-method" class="method-detail ">
-				<a name="M000021"></a>
+				<a name="M000023"></a>
 
 				<div class="method-heading">
 				
@@ -161,7 +161,7 @@
 					
 					<p>
 Returns the model for the given t2flow_file. The method accepts objects of
-classes File and String only.
+classes File, StringIO and String only.
 </p>
 <h3>Usage</h3>
 <pre>
@@ -177,17 +177,21 @@ classes File and String only.
     <span class="ruby-comment cmt"># File lib/t2flow/parser.rb, line 11</span>
 11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">t2flow</span>)
 12:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">t2flow</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>
-13:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/string/i</span><span class="ruby-operator">:</span> <span class="ruby-identifier">document</span> = <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">string</span>(<span class="ruby-identifier">t2flow</span>).<span class="ruby-identifier">parse</span> 
-14:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/file/i</span><span class="ruby-operator">:</span> <span class="ruby-identifier">document</span> = <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">string</span>(<span class="ruby-identifier">t2flow</span>.<span class="ruby-identifier">read</span>).<span class="ruby-identifier">parse</span>
-15:         <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Error parsing file.&quot;</span>
-16:       <span class="ruby-keyword kw">end</span>
-17: 
-18:       <span class="ruby-identifier">root</span> = <span class="ruby-identifier">document</span>.<span class="ruby-identifier">root</span>
-19:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Doesn't appear to be a workflow!&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">root</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;workflow&quot;</span>
-20:       <span class="ruby-identifier">version</span> = <span class="ruby-identifier">root</span>[<span class="ruby-value str">&quot;version&quot;</span>]
-21:       
-22:       <span class="ruby-identifier">create_model</span>(<span class="ruby-identifier">root</span>, <span class="ruby-identifier">version</span>)
-23:     <span class="ruby-keyword kw">end</span></pre>
+13:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^string$/i</span>
+14:           <span class="ruby-identifier">document</span> = <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">string</span>(<span class="ruby-identifier">t2flow</span>).<span class="ruby-identifier">parse</span> 
+15:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^stringio|file$/i</span>
+16:           <span class="ruby-identifier">t2flow</span>.<span class="ruby-identifier">rewind</span>
+17:           <span class="ruby-identifier">document</span> = <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">string</span>(<span class="ruby-identifier">t2flow</span>.<span class="ruby-identifier">read</span>).<span class="ruby-identifier">parse</span> 
+18:         <span class="ruby-keyword kw">else</span> 
+19:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Error parsing file.&quot;</span>
+20:       <span class="ruby-keyword kw">end</span>
+21: 
+22:       <span class="ruby-identifier">root</span> = <span class="ruby-identifier">document</span>.<span class="ruby-identifier">root</span>
+23:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Doesn't appear to be a workflow!&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">root</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;workflow&quot;</span>
+24:       <span class="ruby-identifier">version</span> = <span class="ruby-identifier">root</span>[<span class="ruby-value str">&quot;version&quot;</span>]
+25:       
+26:       <span class="ruby-identifier">create_model</span>(<span class="ruby-identifier">root</span>, <span class="ruby-identifier">version</span>)
+27:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
