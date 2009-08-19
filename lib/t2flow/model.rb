@@ -36,24 +36,68 @@ module T2Flow # :nodoc:
       }
       return beanshells
     end
-        
+    
+    # Retrieve ALL the datalinks within the workflow
+    def datalinks
+      links = []
+      @dataflows.each { |dataflow|
+        dataflow.datalinks.each { |link|
+          links << link
+        }
+      }
+      return links
+    end
+    
     # Retrieve the annotations within the workflow.
     # In the event that the workflow is nested, 
     # retrieve the top-level annotations.
     def annotations
       @dataflows[0].annotations
     end
-        
-    # Retrieve the sources/inputs to the workflow
+    
+    # Retrieve ALL the processors within the workflow
+    def processors
+      procs =[]
+      @dataflows.each { |dataflow|
+        dataflow.processors.each { |proc|
+          procs << proc
+        }
+      }
+      return procs
+    end
+    
+    # Retrieve the sources(inputs) to the workflow
     def sources
       @dataflows[0].sources
     end
-        
-    # Retrieve the sinks/outputs to the workflow
+    
+    # Retrieve ALL the sources(inputs) within the workflow
+    def all_sources
+      sources =[]
+      @dataflows.each { |dataflow|
+        dataflow.sources.each { |source|
+          sources << source
+        }
+      }
+      return sources
+    end
+    
+    # Retrieve the sinks(outputs) to the workflow
     def sinks
       @dataflows[0].sinks
     end
-          
+    
+    # Retrieve ALL the sinks(outputs) within the workflow
+    def all_sinks
+      sinks =[]
+      @dataflows.each { |dataflow|
+        dataflow.sinks.each { |sink|
+          sinks << sink
+        }
+      }
+      return sinks
+    end
+    
     # Retrieve the unique dataflow ID for the top level dataflow.
     def dataflow_id
       @dataflows[0].dataflow_id
