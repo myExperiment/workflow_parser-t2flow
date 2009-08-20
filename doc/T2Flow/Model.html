@@ -61,27 +61,31 @@
 					
 					<li><a href="#M000000">::new</a></li>
 					
-					<li><a href="#M000013">#all_sinks</a></li>
+					<li><a href="#M000007">#all_datalinks</a></li>
 					
-					<li><a href="#M000010">#all_sources</a></li>
+					<li><a href="#M000011">#all_processors</a></li>
 					
-					<li><a href="#M000007">#annotations</a></li>
+					<li><a href="#M000016">#all_sinks</a></li>
 					
-					<li><a href="#M000003">#beanshells</a></li>
+					<li><a href="#M000013">#all_sources</a></li>
 					
-					<li><a href="#M000002">#dataflow</a></li>
+					<li><a href="#M000008">#annotations</a></li>
 					
-					<li><a href="#M000014">#dataflow_id</a></li>
+					<li><a href="#M000005">#beanshells</a></li>
 					
-					<li><a href="#M000004">#datalinks</a></li>
+					<li><a href="#M000004">#dataflow</a></li>
 					
-					<li><a href="#M000008">#processors</a></li>
+					<li><a href="#M000006">#datalinks</a></li>
 					
-					<li><a href="#M000012">#sinks</a></li>
+					<li><a href="#M000003">#main</a></li>
 					
-					<li><a href="#M000009">#sources</a></li>
+					<li><a href="#M000017">#model_id</a></li>
 					
-					<li><a href="#M000001">#top_level</a></li>
+					<li><a href="#M000009">#processors</a></li>
+					
+					<li><a href="#M000014">#sinks</a></li>
+					
+					<li><a href="#M000012">#sources</a></li>
 					
 				</ul>
 			</div>
@@ -255,8 +259,88 @@ Creates an empty model for a Taverna 2 workflow.
 			<h3 class="section-header">Public Instance Methods</h3>
 
 		
+			<div id="all-datalinks-method" class="method-detail ">
+				<a name="M000007"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">all_datalinks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the datalinks within a nested workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="all-datalinks-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 47</span>
+47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_datalinks</span>
+48:       <span class="ruby-identifier">links</span> = []
+49:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+50:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">link</span><span class="ruby-operator">|</span>
+51:           <span class="ruby-identifier">links</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">link</span>
+52:         }
+53:       }
+54:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">links</span>
+55:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="all-processors-method" class="method-detail ">
+				<a name="M000011"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">all_processors</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL the processors found in a nested workflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="all-processors-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 70</span>
+70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_processors</span>
+71:       <span class="ruby-identifier">procs</span> =[]
+72:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+73:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>
+74:           <span class="ruby-identifier">procs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proc</span>
+75:         }
+76:       }
+77:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">procs</span>
+78:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
 			<div id="all-sinks-method" class="method-detail ">
-				<a name="M000013"></a>
+				<a name="M000016"></a>
 
 				<div class="method-heading">
 				
@@ -277,16 +361,16 @@ Retrieve ALL the sinks(outputs) within the workflow
 					<div class="method-source-code"
 						id="all-sinks-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 91</span>
-91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sinks</span>
-92:       <span class="ruby-identifier">sinks</span> =[]
-93:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-94:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sink</span><span class="ruby-operator">|</span>
-95:           <span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sink</span>
-96:         }
-97:       }
-98:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sinks</span>
-99:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 102</span>
+102:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sinks</span>
+103:       <span class="ruby-identifier">sinks</span> =[]
+104:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+105:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sink</span><span class="ruby-operator">|</span>
+106:           <span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sink</span>
+107:         }
+108:       }
+109:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sinks</span>
+110:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -296,7 +380,7 @@ Retrieve ALL the sinks(outputs) within the workflow
 
 		
 			<div id="all-sources-method" class="method-detail ">
-				<a name="M000010"></a>
+				<a name="M000013"></a>
 
 				<div class="method-heading">
 				
@@ -317,16 +401,16 @@ Retrieve ALL the sources(inputs) within the workflow
 					<div class="method-source-code"
 						id="all-sources-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 75</span>
-75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sources</span>
-76:       <span class="ruby-identifier">sources</span> =[]
-77:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-78:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span>
-79:           <span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span>
-80:         }
-81:       }
-82:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>
-83:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 86</span>
+86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sources</span>
+87:       <span class="ruby-identifier">sources</span> =[]
+88:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
+89:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span>
+90:           <span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span>
+91:         }
+92:       }
+93:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>
+94:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -336,7 +420,7 @@ Retrieve ALL the sources(inputs) within the workflow
 
 		
 			<div id="annotations-method" class="method-detail ">
-				<a name="M000007"></a>
+				<a name="M000008"></a>
 
 				<div class="method-heading">
 				
@@ -349,8 +433,8 @@ Retrieve ALL the sources(inputs) within the workflow
 				<div class="method-description">
 					
 					<p>
-Retrieve the annotations within the workflow. In the event that the
-workflow is nested, retrieve the top-level annotations.
+Retrieve the annotations specific to the workflow. This does not return any
+annotations from workflows encapsulated within the main workflow.
 </p>
 					
 
@@ -358,10 +442,10 @@ workflow is nested, retrieve the top-level annotations.
 					<div class="method-source-code"
 						id="annotations-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 54</span>
-54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotations</span>
-55:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">annotations</span>
-56:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotations</span>
+60:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">annotations</span>
+61:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -371,7 +455,7 @@ workflow is nested, retrieve the top-level annotations.
 
 		
 			<div id="beanshells-method" class="method-detail ">
-				<a name="M000003"></a>
+				<a name="M000005"></a>
 
 				<div class="method-heading">
 				
@@ -411,7 +495,7 @@ Retrieve ALL the processors containing beanshells within the workflow.
 
 		
 			<div id="dataflow-method" class="method-detail ">
-				<a name="M000002"></a>
+				<a name="M000004"></a>
 
 				<div class="method-heading">
 				
@@ -445,12 +529,81 @@ Retrieve the dataflow with the given ID
 			</div>
 
 		
-			<div id="dataflow-id-method" class="method-detail ">
-				<a name="M000014"></a>
+			<div id="datalinks-method" class="method-detail ">
+				<a name="M000006"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">dataflow_id</span><span
+					<span class="method-name">datalinks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the datalinks from the top level of a nested workflow. If the
+workflow is not nested, retrieve all datalinks.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="datalinks-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">datalinks</span>
+43:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">datalinks</span>
+44:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="main-method" class="method-detail ">
+				<a name="M000003"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">main</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve the top level dataflow ie the MAIN (containing) dataflow
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="main-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">main</span>
+20:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>]
+21:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="model-id-method" class="method-detail ">
+				<a name="M000017"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">model_id</span><span
 						class="method-args">()</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
@@ -465,52 +618,12 @@ Retrieve the unique dataflow ID for the top level dataflow.
 
 					
 					<div class="method-source-code"
-						id="dataflow-id-source">
+						id="model-id-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 102</span>
-102:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dataflow_id</span>
-103:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">dataflow_id</span>
-104:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-			</div>
-
-		
-			<div id="datalinks-method" class="method-detail ">
-				<a name="M000004"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">datalinks</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Retrieve ALL the datalinks within the workflow
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="datalinks-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 41</span>
-41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">datalinks</span>
-42:       <span class="ruby-identifier">links</span> = []
-43:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-44:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">link</span><span class="ruby-operator">|</span>
-45:           <span class="ruby-identifier">links</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">link</span>
-46:         }
-47:       }
-48:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">links</span>
-49:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 113</span>
+113:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">model_id</span>
+114:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">dataflow_id</span>
+115:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -520,7 +633,7 @@ Retrieve ALL the datalinks within the workflow
 
 		
 			<div id="processors-method" class="method-detail ">
-				<a name="M000008"></a>
+				<a name="M000009"></a>
 
 				<div class="method-heading">
 				
@@ -533,7 +646,8 @@ Retrieve ALL the datalinks within the workflow
 				<div class="method-description">
 					
 					<p>
-Retrieve ALL the processors within the workflow
+Retrieve processors from the top level of a nested workflow. If the
+workflow is not nested, retrieve all processors.
 </p>
 					
 
@@ -541,15 +655,9 @@ Retrieve ALL the processors within the workflow
 					<div class="method-source-code"
 						id="processors-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 59</span>
-59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">processors</span>
-60:       <span class="ruby-identifier">procs</span> =[]
-61:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-62:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>
-63:           <span class="ruby-identifier">procs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proc</span>
-64:         }
-65:       }
-66:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">procs</span>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">processors</span>
+66:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">processors</span>
 67:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -560,7 +668,7 @@ Retrieve ALL the processors within the workflow
 
 		
 			<div id="sinks-method" class="method-detail ">
-				<a name="M000012"></a>
+				<a name="M000014"></a>
 
 				<div class="method-heading">
 				
@@ -581,10 +689,10 @@ Retrieve the sinks(outputs) to the workflow
 					<div class="method-source-code"
 						id="sinks-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 86</span>
-86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sinks</span>
-87:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">sinks</span>
-88:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 97</span>
+97:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sinks</span>
+98:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sinks</span>
+99:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -594,7 +702,7 @@ Retrieve the sinks(outputs) to the workflow
 
 		
 			<div id="sources-method" class="method-detail ">
-				<a name="M000009"></a>
+				<a name="M000012"></a>
 
 				<div class="method-heading">
 				
@@ -615,44 +723,10 @@ Retrieve the sources(inputs) to the workflow
 					<div class="method-source-code"
 						id="sources-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 70</span>
-70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources</span>
-71:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">sources</span>
-72:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-			</div>
-
-		
-			<div id="top-level-method" class="method-detail ">
-				<a name="M000001"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">top_level</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Retrieve the top-level dataflow ie the MAIN (containing) dataflow
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="top-level-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 19</span>
-19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">top_level</span>
-20:       <span class="ruby-ivar">@dataflows</span>[<span class="ruby-value">0</span>]
-21:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 81</span>
+81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources</span>
+82:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sources</span>
+83:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

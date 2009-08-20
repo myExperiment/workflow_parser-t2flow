@@ -15,8 +15,8 @@ module T2Flow # :nodoc:
       @dataflows = []
     end
     
-    # Retrieve the top-level dataflow ie the MAIN (containing) dataflow
-    def top_level
+    # Retrieve the top level dataflow ie the MAIN (containing) dataflow
+    def main
       @dataflows[0]
     end
     
@@ -37,8 +37,14 @@ module T2Flow # :nodoc:
       return beanshells
     end
     
-    # Retrieve ALL the datalinks within the workflow
+    # Retrieve the datalinks from the top level of a nested workflow.
+    # If the workflow is not nested, retrieve all datalinks.
     def datalinks
+      self.main.datalinks
+    end
+    
+    # Retrieve ALL the datalinks within a nested workflow
+    def all_datalinks
       links = []
       @dataflows.each { |dataflow|
         dataflow.datalinks.each { |link|
@@ -48,15 +54,20 @@ module T2Flow # :nodoc:
       return links
     end
     
-    # Retrieve the annotations within the workflow.
-    # In the event that the workflow is nested, 
-    # retrieve the top-level annotations.
+    # Retrieve the annotations specific to the workflow.  This does not return 
+    # any annotations from workflows encapsulated within the main workflow.
     def annotations
-      @dataflows[0].annotations
+      self.main.annotations
     end
     
-    # Retrieve ALL the processors within the workflow
+    # Retrieve processors from the top level of a nested workflow.
+    # If the workflow is not nested, retrieve all processors.
     def processors
+      self.main.processors
+    end
+    
+    # Retrieve ALL the processors found in a nested workflow
+    def all_processors
       procs =[]
       @dataflows.each { |dataflow|
         dataflow.processors.each { |proc|
@@ -68,7 +79,7 @@ module T2Flow # :nodoc:
     
     # Retrieve the sources(inputs) to the workflow
     def sources
-      @dataflows[0].sources
+      self.main.sources
     end
     
     # Retrieve ALL the sources(inputs) within the workflow
@@ -84,7 +95,7 @@ module T2Flow # :nodoc:
     
     # Retrieve the sinks(outputs) to the workflow
     def sinks
-      @dataflows[0].sinks
+      self.main.sinks
     end
     
     # Retrieve ALL the sinks(outputs) within the workflow
@@ -99,8 +110,8 @@ module T2Flow # :nodoc:
     end
     
     # Retrieve the unique dataflow ID for the top level dataflow.
-    def dataflow_id
-      @dataflows[0].dataflow_id
+    def model_id
+      self.main.dataflow_id
     end
   end
   

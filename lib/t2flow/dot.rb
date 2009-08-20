@@ -80,7 +80,7 @@ module T2Flow
       stream.puts '  fontcolor="black",'
       stream.puts '  color="black"'
       stream.puts ' ];'
-      write_dataflow(stream, model.top_level)
+      write_dataflow(stream, model.main)
       stream.puts '}'
       
       stream.flush
