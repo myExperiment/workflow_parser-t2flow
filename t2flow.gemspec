@@ -11,11 +11,11 @@ spec = Gem::Specification.new do |s|
   s.email = "emmanuel.tagarira@student.manchester.ac.uk"
   s.homepage = "http://www.mygrid.org.uk/"
   
-  s.files = ["lib/t2flow", "lib/t2flow/dot.rb", "lib/t2flow/model.rb", "lib/t2flow/parser.rb", "README", "LICENCE"]
-  s.extra_rdoc_files = ["README", "LICENCE"]
+  s.files = ["lib/t2flow", "lib/t2flow/dot.rb", "lib/t2flow/model.rb", "lib/t2flow/parser.rb", "README.rdoc", "LICENCE"]
+  s.extra_rdoc_files = ["README.rdoc", "LICENCE"]
   s.has_rdoc = true
   
-  s.rdoc_options = ["-N", "--tab-width=2", "--main=README", "--exclude='scufl.gemspec|test'"]
+  s.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc", "--exclude='scufl.gemspec|test'"]
 
   s.autorequire = "t2flow"
   s.require_paths = ["lib"]
