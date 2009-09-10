@@ -162,6 +162,18 @@ module T2Flow
                     
                     activity_node.each do |value_node|
                       case value_node.name
+                        when "wsdl"
+                          processor.wsdl = value_node.content
+                        when "operation"
+                          processor.wsdl_operation = value_node.content
+                        when /endpoint/i
+                          processor.endpoint = value_node.content
+                        when /servicename/i
+                          processor.biomoby_service_name = value_node.content
+                        when /authorityname/i
+                          processor.biomoby_authority_name = value_node.content
+                        when "category"
+                          processor.biomoby_category = value_node.content
                         when "script"
                           processor.script = value_node.content
                         when "inputs" # ALL ports present in beanshell

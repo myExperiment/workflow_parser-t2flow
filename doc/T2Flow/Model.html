@@ -63,25 +63,27 @@
 					
 					<li><a href="#M000007">#all_datalinks</a></li>
 					
-					<li><a href="#M000010">#all_processors</a></li>
+					<li><a href="#M000011">#all_processors</a></li>
 					
-					<li><a href="#M000015">#all_sinks</a></li>
+					<li><a href="#M000016">#all_sinks</a></li>
 					
 					<li><a href="#M000013">#all_sources</a></li>
 					
-					<li><a href="#M000008">#annotations</a></li>
+					<li><a href="#M000009">#annotations</a></li>
 					
-					<li><a href="#M000003">#beanshells</a></li>
+					<li><a href="#M000005">#beanshells</a></li>
 					
-					<li><a href="#M000002">#dataflow</a></li>
+					<li><a href="#M000004">#dataflow</a></li>
 					
 					<li><a href="#M000006">#datalinks</a></li>
 					
-					<li><a href="#M000001">#main</a></li>
+					<li><a href="#M000018">#get_processors_linked_to</a></li>
 					
-					<li><a href="#M000016">#model_id</a></li>
+					<li><a href="#M000003">#main</a></li>
 					
-					<li><a href="#M000009">#processors</a></li>
+					<li><a href="#M000017">#model_id</a></li>
+					
+					<li><a href="#M000010">#processors</a></li>
 					
 					<li><a href="#M000014">#sinks</a></li>
 					
@@ -142,6 +144,8 @@
 					<li><a href="../T2Flow/Parser.html">T2Flow::Parser</a></li>
 				
 					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
+				
+					<li><a href="../T2Flow/ProcessorLinkedTo.html">T2Flow::ProcessorLinkedTo</a></li>
 				
 					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
 				
@@ -302,7 +306,7 @@ Retrieve ALL the datalinks within a nested workflow
 
 		
 			<div id="all-processors-method" class="method-detail ">
-				<a name="M000010"></a>
+				<a name="M000011"></a>
 
 				<div class="method-heading">
 				
@@ -342,7 +346,7 @@ Retrieve ALL the processors found in a nested workflow
 
 		
 			<div id="all-sinks-method" class="method-detail ">
-				<a name="M000015"></a>
+				<a name="M000016"></a>
 
 				<div class="method-heading">
 				
@@ -422,7 +426,7 @@ Retrieve ALL the sources(inputs) within the workflow
 
 		
 			<div id="annotations-method" class="method-detail ">
-				<a name="M000008"></a>
+				<a name="M000009"></a>
 
 				<div class="method-heading">
 				
@@ -457,7 +461,7 @@ annotations from workflows encapsulated within the main workflow.
 
 		
 			<div id="beanshells-method" class="method-detail ">
-				<a name="M000003"></a>
+				<a name="M000005"></a>
 
 				<div class="method-heading">
 				
@@ -497,7 +501,7 @@ Retrieve ALL the processors containing beanshells within the workflow.
 
 		
 			<div id="dataflow-method" class="method-detail ">
-				<a name="M000002"></a>
+				<a name="M000004"></a>
 
 				<div class="method-heading">
 				
@@ -566,8 +570,62 @@ workflow is not nested, retrieve all datalinks.
 			</div>
 
 		
+			<div id="get-processors-linked-to-method" class="method-detail ">
+				<a name="M000018"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_processors_linked_to</span><span
+						class="method-args">(proc_name, dataflow=self.main)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+For the given dataflow, return the beanshells and/or services which have
+direct links to or from the given processor. If no dataflow is specified,
+the top-level dataflow is used. This does not search recursively in nested
+workflows.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-processors-linked-to-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 121</span>
+121:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_processors_linked_to</span>(<span class="ruby-identifier">proc_name</span>, <span class="ruby-identifier">dataflow</span>=<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>)
+122:       <span class="ruby-identifier">processor_linked_to</span> = <span class="ruby-constant">ProcessorLinkedTo</span>.<span class="ruby-identifier">new</span>
+123:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">dataflow</span>
+124: 
+125:       <span class="ruby-identifier">processor_names</span> = []
+126:       <span class="ruby-identifier">sources</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{proc_name}/</span> }
+127:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] }
+128:       <span class="ruby-identifier">processor_linked_to</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
+129:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
+130:       }
+131:       
+132:       <span class="ruby-identifier">processor_names</span> = []
+133:       <span class="ruby-identifier">sinks</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{proc_name}/</span> }
+134:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] }
+135:       <span class="ruby-identifier">processor_linked_to</span>.<span class="ruby-identifier">sinks</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
+136:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
+137:       }
+138:       
+139:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">processor_linked_to</span>
+140:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
 			<div id="main-method" class="method-detail ">
-				<a name="M000001"></a>
+				<a name="M000003"></a>
 
 				<div class="method-heading">
 				
@@ -601,7 +659,7 @@ Retrieve the top level dataflow ie the MAIN (containing) dataflow
 
 		
 			<div id="model-id-method" class="method-detail ">
-				<a name="M000016"></a>
+				<a name="M000017"></a>
 
 				<div class="method-heading">
 				
@@ -635,7 +693,7 @@ Retrieve the unique dataflow ID for the top level dataflow.
 
 		
 			<div id="processors-method" class="method-detail ">
-				<a name="M000009"></a>
+				<a name="M000010"></a>
 
 				<div class="method-heading">
 				

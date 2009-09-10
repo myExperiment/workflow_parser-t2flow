@@ -113,6 +113,31 @@ module T2Flow # :nodoc:
     def model_id
       self.main.dataflow_id
     end
+    
+    # For the given dataflow, return the beanshells and/or services which 
+    # have direct links to or from the given processor.
+    # If no dataflow is specified, the top-level dataflow is used.
+    # This does not search recursively in nested workflows.
+    def get_processors_linked_to(proc_name, dataflow=self.main)
+      processor_linked_to = ProcessorLinkedTo.new
+      return nil unless dataflow
+
+      processor_names = []
+      sources = dataflow.datalinks.select{ |x| x.sink =~ /#{proc_name}/ }
+      sources.each { |x| processor_names << x.source.split(":")[0] }
+      processor_linked_to.sources = dataflow.processors.select { |proc| 
+        processor_names.include?(proc.name)
+      }
+      
+      processor_names = []
+      sinks = dataflow.datalinks.select{ |x| x.source =~ /#{proc_name}/ }
+      sinks.each { |x| processor_names << x.sink.split(":")[0] }
+      processor_linked_to.sinks = dataflow.processors.select { |proc| 
+        processor_names.include?(proc.name)
+      }
+      
+      return processor_linked_to
+    end
   end
   
   
@@ -121,22 +146,22 @@ module T2Flow # :nodoc:
   # elements of the workflows; processors, sinks, sources, etc...
   class Dataflow
     # This returns a DataflowAnnotation object.
-    attr_reader :annotations
+    attr_accessor :annotations
     
     # Retrieve the list of processors specific to the dataflow.
-    attr_reader :processors
+    attr_accessor :processors
     
     # Retrieve the list of datalinks specific to the dataflow.
-    attr_reader :datalinks
+    attr_accessor :datalinks
     
     # Retrieve the list of sources specific to the dataflow.
-    attr_reader :sources
+    attr_accessor :sources
     
     # Retrieve the list of sinks specific to the dataflow.
-    attr_reader :sinks
+    attr_accessor :sinks
     
     # Retrieve the list of coordinations specific to the dataflow.
-    attr_reader :coordinations
+    attr_accessor :coordinations
     
     # The unique identifier of the dataflow.
     attr_accessor :dataflow_id
@@ -172,7 +197,7 @@ module T2Flow # :nodoc:
     # A string for the type of processor, e.g. beanshell, workflow, webservice, etc...
     attr_accessor :type 
     
-    # For processors that have type == "dataflow", this is the the reference 
+    # For processors that have type "dataflow", this is the the reference 
     # to the dataflow.  For all other processor types, this is nil.
     attr_accessor :dataflow_id
     
@@ -185,9 +210,40 @@ module T2Flow # :nodoc:
     
     # This is a list of outputs that the processor can produce.
     attr_accessor :outputs
+    
+    # For processors of type "arbitrarywsdl", this is the URI to the location
+    # of the wsdl file.
+    attr_accessor :wsdl
+    
+    # For processors of type "arbitrarywsdl", this is the operation invoked.
+    attr_accessor :wsdl_operation
+    
+    # For soaplab and biomoby services, this is the endpoint URI.
+    attr_accessor :endpoint
+    
+    # Authority name for the biomoby service.
+    attr_accessor :biomoby_authority_name
+
+    # Service name for the biomoby service. This is not necessarily the same 
+    # as the processors name.
+    attr_accessor :biomoby_service_name
+    
+    # Category for the biomoby service.
+    attr_accessor :biomoby_category
   end
 
 
+
+  class ProcessorLinkedTo
+    attr_accessor :sources, :sinks
+    
+    def initialize
+      sources = []
+      sinks = []
+    end
+  end
+  
+  
   
   # This is the annotation object specific to the dataflow it belongs to.
   # A DataflowAnnotation contains metadata about a given dataflow element.

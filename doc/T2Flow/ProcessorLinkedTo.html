@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: T2Flow::DataflowAnnotation</title>
+	<title>Class: T2Flow::ProcessorLinkedTo</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -54,6 +54,15 @@
 			
 
 			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000026">::new</a></li>
+					
+				</ul>
+			</div>
 			
 
 			<!-- Included Modules -->
@@ -123,15 +132,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">T2Flow::DataflowAnnotation</h1>
+		<h1 class="class">T2Flow::ProcessorLinkedTo</h1>
 
 		<div id="description">
-			<p>
-This is the annotation object specific to the dataflow it belongs to. A <a
-href="DataflowAnnotation.html">DataflowAnnotation</a> contains metadata
-about a given dataflow element.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -143,78 +147,36 @@ about a given dataflow element.
 			<h3 class="section-header">Attributes</h3>
 
 			
-			<div id="name-attribute-method" class="method-detail">
-				<a name="name"></a>
+			<div id="sources-attribute-method" class="method-detail">
+				<a name="sources"></a>
 				
-				<a name="name="></a>
+				<a name="sources="></a>
 				
 				<div class="method-heading attribute-method-heading">
-					<span class="method-name">name</span><span
+					<span class="method-name">sources</span><span
 						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
 				
-				<p>
-The name used of the dataflow
-</p>
+				<p class="missing-docs">(Not documented)</p>
 				
 				</div>
 			</div>
 			
-			<div id="titles-attribute-method" class="method-detail">
-				<a name="titles"></a>
+			<div id="sinks-attribute-method" class="method-detail">
+				<a name="sinks"></a>
 				
-				<a name="titles="></a>
+				<a name="sinks="></a>
 				
 				<div class="method-heading attribute-method-heading">
-					<span class="method-name">titles</span><span
+					<span class="method-name">sinks</span><span
 						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
 				
-				<p>
-A list of titles that have been assigned to the dataflow.
-</p>
-				
-				</div>
-			</div>
-			
-			<div id="descriptions-attribute-method" class="method-detail">
-				<a name="descriptions"></a>
-				
-				<a name="descriptions="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">descriptions</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
-
-				<div class="method-description">
-				
-				<p>
-A list ot descriptive strings about the dataflow.
-</p>
-				
-				</div>
-			</div>
-			
-			<div id="authors-attribute-method" class="method-detail">
-				<a name="authors"></a>
-				
-				<a name="authors="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">authors</span><span
-						class="attribute-access-type">[RW]</span>
-				</div>
-
-				<div class="method-description">
-				
-				<p>
-A list of authors of the dataflow
-</p>
+				<p class="missing-docs">(Not documented)</p>
 				
 				</div>
 			</div>
@@ -224,6 +186,45 @@ A list of authors of the dataflow
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="M000026"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 240</span>
+240:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+241:       <span class="ruby-identifier">sources</span> = []
+242:       <span class="ruby-identifier">sinks</span> = []
+243:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

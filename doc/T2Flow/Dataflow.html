@@ -59,9 +59,9 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#M000018">::new</a></li>
+					<li><a href="#M000022">::new</a></li>
 					
-					<li><a href="#M000020">#beanshells</a></li>
+					<li><a href="#M000024">#beanshells</a></li>
 					
 				</ul>
 			</div>
@@ -119,6 +119,8 @@
 				
 					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
 				
+					<li><a href="../T2Flow/ProcessorLinkedTo.html">T2Flow::ProcessorLinkedTo</a></li>
+				
 					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
 				
 					<li><a href="../T2Flow/Source.html">T2Flow::Source</a></li>
@@ -154,9 +156,11 @@ elements of the workflows; processors, sinks, sources, etc...
 			<div id="annotations-attribute-method" class="method-detail">
 				<a name="annotations"></a>
 				
+				<a name="annotations="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">annotations</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -172,9 +176,11 @@ object.
 			<div id="processors-attribute-method" class="method-detail">
 				<a name="processors"></a>
 				
+				<a name="processors="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">processors</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -189,9 +195,11 @@ Retrieve the list of processors specific to the dataflow.
 			<div id="datalinks-attribute-method" class="method-detail">
 				<a name="datalinks"></a>
 				
+				<a name="datalinks="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">datalinks</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -206,9 +214,11 @@ Retrieve the list of datalinks specific to the dataflow.
 			<div id="sources-attribute-method" class="method-detail">
 				<a name="sources"></a>
 				
+				<a name="sources="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">sources</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -223,9 +233,11 @@ Retrieve the list of sources specific to the dataflow.
 			<div id="sinks-attribute-method" class="method-detail">
 				<a name="sinks"></a>
 				
+				<a name="sinks="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">sinks</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -240,9 +252,11 @@ Retrieve the list of sinks specific to the dataflow.
 			<div id="coordinations-attribute-method" class="method-detail">
 				<a name="coordinations"></a>
 				
+				<a name="coordinations="></a>
+				
 				<div class="method-heading attribute-method-heading">
 					<span class="method-name">coordinations</span><span
-						class="attribute-access-type">[R]</span>
+						class="attribute-access-type">[RW]</span>
 				</div>
 
 				<div class="method-description">
@@ -283,7 +297,7 @@ The unique identifier of the dataflow.
 
 		
 			<div id="new-method" class="method-detail ">
-				<a name="M000018"></a>
+				<a name="M000022"></a>
 
 				<div class="method-heading">
 				
@@ -304,15 +318,15 @@ Creates a new <a href="Dataflow.html">Dataflow</a> object.
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 145</span>
-145:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-146:       <span class="ruby-ivar">@annotations</span> = <span class="ruby-constant">DataflowAnnotation</span>.<span class="ruby-identifier">new</span>
-147:       <span class="ruby-ivar">@processors</span> = []
-148:       <span class="ruby-ivar">@datalinks</span> = []
-149:       <span class="ruby-ivar">@sources</span> = []
-150:       <span class="ruby-ivar">@sinks</span> = []
-151:       <span class="ruby-ivar">@coordinations</span> = []
-152:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 170</span>
+170:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+171:       <span class="ruby-ivar">@annotations</span> = <span class="ruby-constant">DataflowAnnotation</span>.<span class="ruby-identifier">new</span>
+172:       <span class="ruby-ivar">@processors</span> = []
+173:       <span class="ruby-ivar">@datalinks</span> = []
+174:       <span class="ruby-ivar">@sources</span> = []
+175:       <span class="ruby-ivar">@sinks</span> = []
+176:       <span class="ruby-ivar">@coordinations</span> = []
+177:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -328,7 +342,7 @@ Creates a new <a href="Dataflow.html">Dataflow</a> object.
 
 		
 			<div id="beanshells-method" class="method-detail ">
-				<a name="M000020"></a>
+				<a name="M000024"></a>
 
 				<div class="method-heading">
 				
@@ -349,10 +363,10 @@ Retrieve beanshell processors specific to this dataflow.
 					<div class="method-source-code"
 						id="beanshells-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 155</span>
-155:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">beanshells</span>
-156:       <span class="ruby-ivar">@processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;beanshell&quot;</span> }
-157:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 180</span>
+180:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">beanshells</span>
+181:       <span class="ruby-ivar">@processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;beanshell&quot;</span> }
+182:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
