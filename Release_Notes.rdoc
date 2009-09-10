@@ -1,0 +1,7 @@
+= Version 0.0.5
+
+== Bug fixes
+- BioMart services now return a type value instead of nil when processor.type is invoked.
+
+== Added Functionality
+- Extraction of *some* inputs and outputs for service type processors.

@@ -2,17 +2,17 @@
 
 spec = Gem::Specification.new do |s| 
   s.name = "taverna-t2flow"
-  s.version = "0.0.4"
-  s.date = "2009-08-21"
+  s.version = "0.0.5"
+  s.date = "2009-09-10"
   s.summary = "Support for interacting with the Taverna 2 workflow system (T2Flow)."
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows.  An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
   
-  s.authors = ["Emmanuel Tagarira"]
+  s.authors = ["Emmanuel Tagarira", "David Withers"]
   s.email = "emmanuel.tagarira@student.manchester.ac.uk"
   s.homepage = "http://www.mygrid.org.uk/"
   
-  s.files = ["lib/t2flow", "lib/t2flow/dot.rb", "lib/t2flow/model.rb", "lib/t2flow/parser.rb", "README.rdoc", "LICENCE"]
-  s.extra_rdoc_files = ["README.rdoc", "LICENCE"]
+  s.files = ["lib/t2flow", "lib/t2flow/dot.rb", "lib/t2flow/model.rb", "lib/t2flow/parser.rb", "README.rdoc", "LICENCE", "Release_Notes.rdoc"]
+  s.extra_rdoc_files = ["README.rdoc", "LICENCE", "Release_Notes.rdoc"]
   s.has_rdoc = true
   
   s.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc", "--exclude='scufl.gemspec|test'"]

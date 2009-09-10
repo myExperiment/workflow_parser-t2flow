@@ -132,10 +132,21 @@ module T2Flow
     def add_processor(dataflow, element) # :nodoc:
       processor = Processor.new
       
+      temp_inputs = []
+      temp_outputs = []
+      
       element.each do |elt|
         case elt.name
           when "name"
             processor.name = elt.content
+          when /inputports/i # ports from services
+            elt.each { |port| 
+              port.each { |x| temp_inputs << x.content if x.name=="name" }
+            }
+          when /outputports/i # ports from services
+            elt.each { |port| 
+              port.each { |x| temp_outputs << x.content if x.name=="name" }
+            }
           when "activities" # a processor can only have one kind of activity
             activity = elt.child
             activity.each do |node|
@@ -146,20 +157,21 @@ module T2Flow
                     processor.dataflow_id = activity_node["ref"]
                     processor.type = "workflow"
                   else
-                    processor.type = activity_node.name.split(".")[-2]
-
+                    processor.type = (activity_node.name =~ /martquery/i ?
+                        "biomart" : activity_node.name.split(".")[-2])
+                    
                     activity_node.each do |value_node|
                       case value_node.name
                         when "script"
                           processor.script = value_node.content
-                        when "inputs"
+                        when "inputs" # ALL ports present in beanshell
                           value_node.each { |input| 
                             input.each { |x| 
                               processor.inputs = [] if processor.inputs.nil?
                               processor.inputs << x.content if x.name == "name" 
                             }
                           }
-                        when "outputs"
+                        when "outputs" # ALL ports present in beanshell
                           value_node.each { |output| 
                             output.each { |x| 
                               processor.outputs = [] if processor.outputs.nil?
@@ -174,6 +186,8 @@ module T2Flow
         end # case elt.name
       end # element.each
       
+      processor.inputs = temp_inputs if processor.inputs.nil? && !temp_inputs.empty?
+      processor.outputs = temp_outputs if processor.outputs.nil? && !temp_outputs.empty?
       dataflow.processors << processor
     end
     
