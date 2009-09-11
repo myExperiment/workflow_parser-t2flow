@@ -118,25 +118,35 @@ module T2Flow # :nodoc:
     # have direct links to or from the given processor.
     # If no dataflow is specified, the top-level dataflow is used.
     # This does not search recursively in nested workflows.
-    def get_processors_linked_to(proc_name, dataflow=self.main)
-      processor_linked_to = ProcessorLinkedTo.new
-      return nil unless dataflow
-
+    def get_processors_linked_to(processor)
+      return nil unless processor
+      obj_with_linked_procs = ProcessorLinkedTo.new
+      
+      # SOURCES
       processor_names = []
-      sources = dataflow.datalinks.select{ |x| x.sink =~ /#{proc_name}/ }
-      sources.each { |x| processor_names << x.source.split(":")[0] }
-      processor_linked_to.sources = dataflow.processors.select { |proc| 
+      links_with_proc_name = self.all_datalinks.select{ |x|
+        x.sink =~ /#{processor.name}/ 
+      }
+      links_with_proc_name.each { |x| 
+        processor_names << x.source.split(":")[0] 
+      }
+      obj_with_linked_procs.sources = self.all_processors.select { |proc| 
         processor_names.include?(proc.name)
       }
       
+      # SINKS
       processor_names = []
-      sinks = dataflow.datalinks.select{ |x| x.source =~ /#{proc_name}/ }
-      sinks.each { |x| processor_names << x.sink.split(":")[0] }
-      processor_linked_to.sinks = dataflow.processors.select { |proc| 
+      links_with_proc_name = self.all_datalinks.select{ |x| 
+        x.source =~ /#{processor.name}/ 
+      }
+      links_with_proc_name.each { |x| 
+        processor_names << x.sink.split(":")[0] 
+      }
+      obj_with_linked_procs.sinks = self.all_processors.select { |proc|  
         processor_names.include?(proc.name)
       }
       
-      return processor_linked_to
+      return obj_with_linked_procs
     end
   end
   
@@ -233,7 +243,7 @@ module T2Flow # :nodoc:
   end
 
 
-
+  # This object is returned after invoking model.get_
   class ProcessorLinkedTo
     attr_accessor :sources, :sinks
     

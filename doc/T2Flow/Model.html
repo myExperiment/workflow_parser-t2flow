@@ -59,9 +59,9 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#M000000">::new</a></li>
+					<li><a href="#M000002">::new</a></li>
 					
-					<li><a href="#M000007">#all_datalinks</a></li>
+					<li><a href="#M000008">#all_datalinks</a></li>
 					
 					<li><a href="#M000011">#all_processors</a></li>
 					
@@ -77,7 +77,7 @@
 					
 					<li><a href="#M000006">#datalinks</a></li>
 					
-					<li><a href="#M000018">#get_processors_linked_to</a></li>
+					<li><a href="#M000019">#get_processors_linked_to</a></li>
 					
 					<li><a href="#M000003">#main</a></li>
 					
@@ -85,7 +85,7 @@
 					
 					<li><a href="#M000010">#processors</a></li>
 					
-					<li><a href="#M000014">#sinks</a></li>
+					<li><a href="#M000015">#sinks</a></li>
 					
 					<li><a href="#M000012">#sources</a></li>
 					
@@ -226,7 +226,7 @@ The list of any dependencies that have been found inside the workflow.
 
 		
 			<div id="new-method" class="method-detail ">
-				<a name="M000000"></a>
+				<a name="M000002"></a>
 
 				<div class="method-heading">
 				
@@ -266,7 +266,7 @@ Creates an empty model for a Taverna 2 workflow.
 
 		
 			<div id="all-datalinks-method" class="method-detail ">
-				<a name="M000007"></a>
+				<a name="M000008"></a>
 
 				<div class="method-heading">
 				
@@ -571,12 +571,12 @@ workflow is not nested, retrieve all datalinks.
 
 		
 			<div id="get-processors-linked-to-method" class="method-detail ">
-				<a name="M000018"></a>
+				<a name="M000019"></a>
 
 				<div class="method-heading">
 				
 					<span class="method-name">get_processors_linked_to</span><span
-						class="method-args">(proc_name, dataflow=self.main)</span>
+						class="method-args">(processor)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -596,26 +596,36 @@ workflows.
 						id="get-processors-linked-to-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 121</span>
-121:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_processors_linked_to</span>(<span class="ruby-identifier">proc_name</span>, <span class="ruby-identifier">dataflow</span>=<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>)
-122:       <span class="ruby-identifier">processor_linked_to</span> = <span class="ruby-constant">ProcessorLinkedTo</span>.<span class="ruby-identifier">new</span>
-123:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">dataflow</span>
-124: 
-125:       <span class="ruby-identifier">processor_names</span> = []
-126:       <span class="ruby-identifier">sources</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{proc_name}/</span> }
-127:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] }
-128:       <span class="ruby-identifier">processor_linked_to</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
-129:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
-130:       }
-131:       
-132:       <span class="ruby-identifier">processor_names</span> = []
-133:       <span class="ruby-identifier">sinks</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{proc_name}/</span> }
-134:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] }
-135:       <span class="ruby-identifier">processor_linked_to</span>.<span class="ruby-identifier">sinks</span> = <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
-136:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
-137:       }
-138:       
-139:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">processor_linked_to</span>
-140:     <span class="ruby-keyword kw">end</span></pre>
+121:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_processors_linked_to</span>(<span class="ruby-identifier">processor</span>)
+122:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">processor</span>
+123:       <span class="ruby-identifier">obj_with_linked_procs</span> = <span class="ruby-constant">ProcessorLinkedTo</span>.<span class="ruby-identifier">new</span>
+124:       
+125:       <span class="ruby-comment cmt"># SOURCES</span>
+126:       <span class="ruby-identifier">processor_names</span> = []
+127:       <span class="ruby-identifier">links_with_proc_name</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+128:         <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> 
+129:       }
+130:       <span class="ruby-identifier">links_with_proc_name</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
+131:         <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] 
+132:       }
+133:       <span class="ruby-identifier">obj_with_linked_procs</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
+134:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
+135:       }
+136:       
+137:       <span class="ruby-comment cmt"># SINKS</span>
+138:       <span class="ruby-identifier">processor_names</span> = []
+139:       <span class="ruby-identifier">links_with_proc_name</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
+140:         <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> 
+141:       }
+142:       <span class="ruby-identifier">links_with_proc_name</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
+143:         <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] 
+144:       }
+145:       <span class="ruby-identifier">obj_with_linked_procs</span>.<span class="ruby-identifier">sinks</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>  
+146:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
+147:       }
+148:       
+149:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">obj_with_linked_procs</span>
+150:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -728,7 +738,7 @@ workflow is not nested, retrieve all processors.
 
 		
 			<div id="sinks-method" class="method-detail ">
-				<a name="M000014"></a>
+				<a name="M000015"></a>
 
 				<div class="method-heading">
 				
