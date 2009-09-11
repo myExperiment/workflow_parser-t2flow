@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: T2Flow::ProcessorsLinkedTo</title>
+	<title>Class: T2Flow::ProcessorLinks</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -108,7 +108,7 @@
 				
 					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
 				
-					<li><a href="../T2Flow/ProcessorsLinkedTo.html">T2Flow::ProcessorsLinkedTo</a></li>
+					<li><a href="../T2Flow/ProcessorLinks.html">T2Flow::ProcessorLinks</a></li>
 				
 					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
 				
@@ -123,14 +123,17 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">T2Flow::ProcessorsLinkedTo</h1>
+		<h1 class="class">T2Flow::ProcessorLinks</h1>
 
 		<div id="description">
 			<p>
-This object is returned after invoking
-model.get_processors_linked_to(processor). The object contains two lists of
-processors.
+This object is returned after invoking model.get_processor_links(processor)
+. The object contains two lists of processors. Each element has
 </p>
+<pre>
+ a name of the processor and the port used for the linking,
+ seperated by a colon (:) i.e. &quot;name_of_processor:port_name&quot;
+</pre>
 
 		</div>
 

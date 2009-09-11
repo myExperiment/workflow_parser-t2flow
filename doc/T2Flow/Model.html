@@ -63,31 +63,33 @@
 					
 					<li><a href="#M000007">#all_datalinks</a></li>
 					
-					<li><a href="#M000011">#all_processors</a></li>
+					<li><a href="#M000010">#all_processors</a></li>
 					
-					<li><a href="#M000016">#all_sinks</a></li>
+					<li><a href="#M000015">#all_sinks</a></li>
 					
 					<li><a href="#M000013">#all_sources</a></li>
 					
-					<li><a href="#M000009">#annotations</a></li>
+					<li><a href="#M000008">#annotations</a></li>
 					
-					<li><a href="#M000005">#beanshells</a></li>
+					<li><a href="#M000003">#beanshells</a></li>
 					
-					<li><a href="#M000004">#dataflow</a></li>
+					<li><a href="#M000002">#dataflow</a></li>
 					
 					<li><a href="#M000006">#datalinks</a></li>
 					
-					<li><a href="#M000019">#get_processors_linked_to</a></li>
+					<li><a href="#M000017">#get_processor_links</a></li>
 					
 					<li><a href="#M000001">#main</a></li>
 					
-					<li><a href="#M000017">#model_id</a></li>
+					<li><a href="#M000016">#model_id</a></li>
 					
-					<li><a href="#M000010">#processors</a></li>
+					<li><a href="#M000009">#processors</a></li>
 					
-					<li><a href="#M000015">#sinks</a></li>
+					<li><a href="#M000014">#sinks</a></li>
 					
 					<li><a href="#M000012">#sources</a></li>
+					
+					<li><a href="#M000004">#web_services</a></li>
 					
 				</ul>
 			</div>
@@ -145,7 +147,7 @@
 				
 					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
 				
-					<li><a href="../T2Flow/ProcessorsLinkedTo.html">T2Flow::ProcessorsLinkedTo</a></li>
+					<li><a href="../T2Flow/ProcessorLinks.html">T2Flow::ProcessorLinks</a></li>
 				
 					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
 				
@@ -287,16 +289,12 @@ Retrieve ALL the datalinks within a nested workflow
 					<div class="method-source-code"
 						id="all-datalinks-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 47</span>
-47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_datalinks</span>
-48:       <span class="ruby-identifier">links</span> = []
-49:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-50:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">link</span><span class="ruby-operator">|</span>
-51:           <span class="ruby-identifier">links</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">link</span>
-52:         }
-53:       }
-54:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">links</span>
-55:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 46</span>
+46:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_datalinks</span>
+47:       <span class="ruby-identifier">links</span> = []
+48:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> <span class="ruby-identifier">links</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">datalinks</span> }
+49:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">links</span>.<span class="ruby-identifier">flatten</span>
+50:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -306,7 +304,7 @@ Retrieve ALL the datalinks within a nested workflow
 
 		
 			<div id="all-processors-method" class="method-detail ">
-				<a name="M000011"></a>
+				<a name="M000010"></a>
 
 				<div class="method-heading">
 				
@@ -327,16 +325,12 @@ Retrieve ALL the processors found in a nested workflow
 					<div class="method-source-code"
 						id="all-processors-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 70</span>
-70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_processors</span>
-71:       <span class="ruby-identifier">procs</span> =[]
-72:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-73:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>
-74:           <span class="ruby-identifier">procs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proc</span>
-75:         }
-76:       }
-77:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">procs</span>
-78:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_processors</span>
+66:       <span class="ruby-identifier">procs</span> =[]
+67:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> <span class="ruby-identifier">procs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">processors</span> }
+68:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">procs</span>.<span class="ruby-identifier">flatten</span>
+69:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -346,7 +340,7 @@ Retrieve ALL the processors found in a nested workflow
 
 		
 			<div id="all-sinks-method" class="method-detail ">
-				<a name="M000016"></a>
+				<a name="M000015"></a>
 
 				<div class="method-heading">
 				
@@ -367,16 +361,12 @@ Retrieve ALL the sinks(outputs) within the workflow
 					<div class="method-source-code"
 						id="all-sinks-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 102</span>
-102:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sinks</span>
-103:       <span class="ruby-identifier">sinks</span> =[]
-104:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-105:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sink</span><span class="ruby-operator">|</span>
-106:           <span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sink</span>
-107:         }
-108:       }
-109:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sinks</span>
-110:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 89</span>
+89:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sinks</span>
+90:       <span class="ruby-identifier">sinks</span> =[]
+91:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sinks</span> }
+92:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">flatten</span>
+93:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -407,16 +397,12 @@ Retrieve ALL the sources(inputs) within the workflow
 					<div class="method-source-code"
 						id="all-sources-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 86</span>
-86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sources</span>
-87:       <span class="ruby-identifier">sources</span> =[]
-88:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span>
-89:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span>
-90:           <span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span>
-91:         }
-92:       }
-93:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>
-94:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 77</span>
+77:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_sources</span>
+78:       <span class="ruby-identifier">sources</span> =[]
+79:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">sources</span> }
+80:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">flatten</span>
+81:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -426,7 +412,7 @@ Retrieve ALL the sources(inputs) within the workflow
 
 		
 			<div id="annotations-method" class="method-detail ">
-				<a name="M000009"></a>
+				<a name="M000008"></a>
 
 				<div class="method-heading">
 				
@@ -448,10 +434,10 @@ annotations from workflows encapsulated within the main workflow.
 					<div class="method-source-code"
 						id="annotations-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 59</span>
-59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotations</span>
-60:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">annotations</span>
-61:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 54</span>
+54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotations</span>
+55:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">annotations</span>
+56:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -461,7 +447,7 @@ annotations from workflows encapsulated within the main workflow.
 
 		
 			<div id="beanshells-method" class="method-detail ">
-				<a name="M000005"></a>
+				<a name="M000003"></a>
 
 				<div class="method-heading">
 				
@@ -484,14 +470,8 @@ Retrieve ALL the processors containing beanshells within the workflow.
 <pre>
     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 30</span>
 30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">beanshells</span>
-31:       <span class="ruby-identifier">beanshells</span> = []
-32:       <span class="ruby-ivar">@dataflows</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataflow</span><span class="ruby-operator">|</span> 
-33:         <span class="ruby-identifier">dataflow</span>.<span class="ruby-identifier">beanshells</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">bean</span><span class="ruby-operator">|</span>
-34:           <span class="ruby-identifier">beanshells</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">bean</span>
-35:         }
-36:       }
-37:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">beanshells</span>
-38:     <span class="ruby-keyword kw">end</span></pre>
+31:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;beanshell&quot;</span> }
+32:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -501,7 +481,7 @@ Retrieve ALL the processors containing beanshells within the workflow.
 
 		
 			<div id="dataflow-method" class="method-detail ">
-				<a name="M000004"></a>
+				<a name="M000002"></a>
 
 				<div class="method-heading">
 				
@@ -558,10 +538,10 @@ workflow is not nested, retrieve all datalinks.
 					<div class="method-source-code"
 						id="datalinks-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 42</span>
-42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">datalinks</span>
-43:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">datalinks</span>
-44:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 41</span>
+41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">datalinks</span>
+42:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">datalinks</span>
+43:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -570,12 +550,12 @@ workflow is not nested, retrieve all datalinks.
 			</div>
 
 		
-			<div id="get-processors-linked-to-method" class="method-detail ">
-				<a name="M000019"></a>
+			<div id="get-processor-links-method" class="method-detail ">
+				<a name="M000017"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">get_processors_linked_to</span><span
+					<span class="method-name">get_processor_links</span><span
 						class="method-args">(processor)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
@@ -600,39 +580,25 @@ workflows.
 
 					
 					<div class="method-source-code"
-						id="get-processors-linked-to-source">
+						id="get-processor-links-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 126</span>
-126:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_processors_linked_to</span>(<span class="ruby-identifier">processor</span>)
-127:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">processor</span>
-128:       <span class="ruby-identifier">obj_with_linked_procs</span> = <span class="ruby-constant">ProcessorsLinkedTo</span>.<span class="ruby-identifier">new</span>
-129:       
-130:       <span class="ruby-comment cmt"># SOURCES</span>
-131:       <span class="ruby-identifier">processor_names</span> = []
-132:       <span class="ruby-identifier">links_with_proc_name</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
-133:         <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> 
-134:       }
-135:       <span class="ruby-identifier">links_with_proc_name</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
-136:         <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] 
-137:       }
-138:       <span class="ruby-identifier">obj_with_linked_procs</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span> 
-139:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
-140:       }
-141:       
-142:       <span class="ruby-comment cmt"># SINKS</span>
-143:       <span class="ruby-identifier">processor_names</span> = []
-144:       <span class="ruby-identifier">links_with_proc_name</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
-145:         <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> 
-146:       }
-147:       <span class="ruby-identifier">links_with_proc_name</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
-148:         <span class="ruby-identifier">processor_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>] 
-149:       }
-150:       <span class="ruby-identifier">obj_with_linked_procs</span>.<span class="ruby-identifier">sinks</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">proc</span><span class="ruby-operator">|</span>  
-151:         <span class="ruby-identifier">processor_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">name</span>)
-152:       }
-153:       
-154:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">obj_with_linked_procs</span>
-155:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 109</span>
+109:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_processor_links</span>(<span class="ruby-identifier">processor</span>)
+110:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">processor</span>
+111:       <span class="ruby-identifier">proc_links</span> = <span class="ruby-constant">ProcessorLinks</span>.<span class="ruby-identifier">new</span>
+112:       
+113:       <span class="ruby-comment cmt"># SOURCES</span>
+114:       <span class="ruby-identifier">sources</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> }
+115:       <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sources</span> = []
+116:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> }
+117:       
+118:       <span class="ruby-comment cmt"># SINKS</span>
+119:       <span class="ruby-identifier">sinks</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> }
+120:       <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> = []
+121:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> }
+122:       
+123:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">proc_links</span>
+124:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -676,7 +642,7 @@ Retrieve the top level dataflow ie the MAIN (containing) dataflow
 
 		
 			<div id="model-id-method" class="method-detail ">
-				<a name="M000017"></a>
+				<a name="M000016"></a>
 
 				<div class="method-heading">
 				
@@ -697,10 +663,10 @@ Retrieve the unique dataflow ID for the top level dataflow.
 					<div class="method-source-code"
 						id="model-id-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 113</span>
-113:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">model_id</span>
-114:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">dataflow_id</span>
-115:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 96</span>
+96:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">model_id</span>
+97:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">dataflow_id</span>
+98:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -710,7 +676,7 @@ Retrieve the unique dataflow ID for the top level dataflow.
 
 		
 			<div id="processors-method" class="method-detail ">
-				<a name="M000010"></a>
+				<a name="M000009"></a>
 
 				<div class="method-heading">
 				
@@ -732,10 +698,10 @@ workflow is not nested, retrieve all processors.
 					<div class="method-source-code"
 						id="processors-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 65</span>
-65:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">processors</span>
-66:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">processors</span>
-67:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">processors</span>
+61:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">processors</span>
+62:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -745,7 +711,7 @@ workflow is not nested, retrieve all processors.
 
 		
 			<div id="sinks-method" class="method-detail ">
-				<a name="M000015"></a>
+				<a name="M000014"></a>
 
 				<div class="method-heading">
 				
@@ -766,10 +732,10 @@ Retrieve the sinks(outputs) to the workflow
 					<div class="method-source-code"
 						id="sinks-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 97</span>
-97:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sinks</span>
-98:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sinks</span>
-99:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 84</span>
+84:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sinks</span>
+85:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sinks</span>
+86:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -800,10 +766,44 @@ Retrieve the sources(inputs) to the workflow
 					<div class="method-source-code"
 						id="sources-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 81</span>
-81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources</span>
-82:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sources</span>
-83:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 72</span>
+72:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources</span>
+73:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">sources</span>
+74:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="web-services-method" class="method-detail ">
+				<a name="M000004"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">web_services</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Retrieve ALL processors of that are webservices WITHIN the model.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="web-services-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 35</span>
+35:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">web_services</span>
+36:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_processors</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/wsdl|soaplab|biomoby/i</span> }
+37:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
