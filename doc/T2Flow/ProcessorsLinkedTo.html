@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: T2Flow::ProcessorLinkedTo</title>
+	<title>Class: T2Flow::ProcessorsLinkedTo</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -54,15 +54,6 @@
 			
 
 			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#M000026">::new</a></li>
-					
-				</ul>
-			</div>
 			
 
 			<!-- Included Modules -->
@@ -117,7 +108,7 @@
 				
 					<li><a href="../T2Flow/Processor.html">T2Flow::Processor</a></li>
 				
-					<li><a href="../T2Flow/ProcessorLinkedTo.html">T2Flow::ProcessorLinkedTo</a></li>
+					<li><a href="../T2Flow/ProcessorsLinkedTo.html">T2Flow::ProcessorsLinkedTo</a></li>
 				
 					<li><a href="../T2Flow/Sink.html">T2Flow::Sink</a></li>
 				
@@ -132,11 +123,13 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">T2Flow::ProcessorLinkedTo</h1>
+		<h1 class="class">T2Flow::ProcessorsLinkedTo</h1>
 
 		<div id="description">
 			<p>
-This object is returned after invoking model.get_
+This object is returned after invoking
+model.get_processors_linked_to(processor). The object contains two lists of
+processors.
 </p>
 
 		</div>
@@ -162,7 +155,10 @@ This object is returned after invoking model.get_
 
 				<div class="method-description">
 				
-				<p class="missing-docs">(Not documented)</p>
+				<p>
+The processors whose output is fed as input into the processor used in
+model.get_processors_linked_to(processor).
+</p>
 				
 				</div>
 			</div>
@@ -179,7 +175,10 @@ This object is returned after invoking model.get_
 
 				<div class="method-description">
 				
-				<p class="missing-docs">(Not documented)</p>
+				<p>
+A list of processors that are fed the output from the processor (used in
+model.get_processors_linked_to(processor) ) as input.
+</p>
 				
 				</div>
 			</div>
@@ -189,45 +188,6 @@ This object is returned after invoking model.get_
 
 		<!-- Methods -->
 		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
-
-		
-			<div id="new-method" class="method-detail ">
-				<a name="M000026"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p class="missing-docs">(Not documented)</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-     <span class="ruby-comment cmt"># File lib/t2flow/model.rb, line 250</span>
-250:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-251:       <span class="ruby-identifier">sources</span> = []
-252:       <span class="ruby-identifier">sinks</span> = []
-253:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-			</div>
-
-		
-		</div>
-	
 
 	</div>
 

@@ -120,7 +120,7 @@ module T2Flow # :nodoc:
     # This does not search recursively in nested workflows.
     def get_processors_linked_to(processor)
       return nil unless processor
-      obj_with_linked_procs = ProcessorLinkedTo.new
+      obj_with_linked_procs = ProcessorsLinkedTo.new
       
       # SOURCES
       processor_names = []
@@ -243,11 +243,19 @@ module T2Flow # :nodoc:
   end
 
 
-  # This object is returned after invoking model.get_
-  class ProcessorLinkedTo
-    attr_accessor :sources, :sinks
+  # This object is returned after invoking 
+  # model.get_processors_linked_to(processor).  The object contains two lists 
+  # of processors.
+  class ProcessorsLinkedTo
+    # The processors whose output is fed as input into the processor used in
+    # model.get_processors_linked_to(processor).
+    attr_accessor :sources
     
-    def initialize
+    # A list of processors that are fed the output from the processor (used in
+    # model.get_processors_linked_to(processor) ) as input.
+    attr_accessor :sinks
+    
+    def initialize # :nodoc:
       sources = []
       sinks = []
     end
