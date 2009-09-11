@@ -117,7 +117,12 @@ module T2Flow # :nodoc:
     # For the given dataflow, return the beanshells and/or services which 
     # have direct links to or from the given processor.
     # If no dataflow is specified, the top-level dataflow is used.
-    # This does not search recursively in nested workflows.
+    # This does a recursive search in nested workflows.
+    # == Usage
+    #   my_processor = model.processor[0]
+    #   linked_processors = model.get_processors_linked_to(my_processor)
+    #   processors_feeding_into_my_processor = linked_processors.sources
+    #   processors_feeding_from_my_processor = linked_processors.sinks
     def get_processors_linked_to(processor)
       return nil unless processor
       obj_with_linked_procs = ProcessorsLinkedTo.new
