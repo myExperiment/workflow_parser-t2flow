@@ -1,5 +1,5 @@
 = Version 0.1.0
-Released:: Thursday, September 10, 2009
+Released:: 
 
 == Bug fixes
 - x
