@@ -61,35 +61,35 @@
 					
 					<li><a href="#M000000">::new</a></li>
 					
-					<li><a href="#M000007">#all_datalinks</a></li>
+					<li><a href="#M000008">#all_datalinks</a></li>
 					
-					<li><a href="#M000010">#all_processors</a></li>
+					<li><a href="#M000012">#all_processors</a></li>
 					
-					<li><a href="#M000015">#all_sinks</a></li>
+					<li><a href="#M000016">#all_sinks</a></li>
 					
-					<li><a href="#M000013">#all_sources</a></li>
+					<li><a href="#M000014">#all_sources</a></li>
 					
-					<li><a href="#M000008">#annotations</a></li>
+					<li><a href="#M000009">#annotations</a></li>
 					
-					<li><a href="#M000003">#beanshells</a></li>
+					<li><a href="#M000005">#beanshells</a></li>
 					
-					<li><a href="#M000002">#dataflow</a></li>
+					<li><a href="#M000004">#dataflow</a></li>
 					
-					<li><a href="#M000006">#datalinks</a></li>
+					<li><a href="#M000007">#datalinks</a></li>
 					
-					<li><a href="#M000017">#get_processor_links</a></li>
+					<li><a href="#M000019">#get_processor_links</a></li>
 					
 					<li><a href="#M000001">#main</a></li>
 					
-					<li><a href="#M000016">#model_id</a></li>
+					<li><a href="#M000017">#model_id</a></li>
 					
-					<li><a href="#M000009">#processors</a></li>
+					<li><a href="#M000010">#processors</a></li>
 					
-					<li><a href="#M000014">#sinks</a></li>
+					<li><a href="#M000015">#sinks</a></li>
 					
-					<li><a href="#M000012">#sources</a></li>
+					<li><a href="#M000013">#sources</a></li>
 					
-					<li><a href="#M000004">#web_services</a></li>
+					<li><a href="#M000006">#web_services</a></li>
 					
 				</ul>
 			</div>
@@ -268,7 +268,7 @@ Creates an empty model for a Taverna 2 workflow.
 
 		
 			<div id="all-datalinks-method" class="method-detail ">
-				<a name="M000007"></a>
+				<a name="M000008"></a>
 
 				<div class="method-heading">
 				
@@ -304,7 +304,7 @@ Retrieve ALL the datalinks within a nested workflow
 
 		
 			<div id="all-processors-method" class="method-detail ">
-				<a name="M000010"></a>
+				<a name="M000012"></a>
 
 				<div class="method-heading">
 				
@@ -340,7 +340,7 @@ Retrieve ALL the processors found in a nested workflow
 
 		
 			<div id="all-sinks-method" class="method-detail ">
-				<a name="M000015"></a>
+				<a name="M000016"></a>
 
 				<div class="method-heading">
 				
@@ -376,7 +376,7 @@ Retrieve ALL the sinks(outputs) within the workflow
 
 		
 			<div id="all-sources-method" class="method-detail ">
-				<a name="M000013"></a>
+				<a name="M000014"></a>
 
 				<div class="method-heading">
 				
@@ -412,7 +412,7 @@ Retrieve ALL the sources(inputs) within the workflow
 
 		
 			<div id="annotations-method" class="method-detail ">
-				<a name="M000008"></a>
+				<a name="M000009"></a>
 
 				<div class="method-heading">
 				
@@ -447,7 +447,7 @@ annotations from workflows encapsulated within the main workflow.
 
 		
 			<div id="beanshells-method" class="method-detail ">
-				<a name="M000003"></a>
+				<a name="M000005"></a>
 
 				<div class="method-heading">
 				
@@ -481,7 +481,7 @@ Retrieve ALL the processors containing beanshells within the workflow.
 
 		
 			<div id="dataflow-method" class="method-detail ">
-				<a name="M000002"></a>
+				<a name="M000004"></a>
 
 				<div class="method-heading">
 				
@@ -516,7 +516,7 @@ Retrieve the dataflow with the given ID
 
 		
 			<div id="datalinks-method" class="method-detail ">
-				<a name="M000006"></a>
+				<a name="M000007"></a>
 
 				<div class="method-heading">
 				
@@ -551,7 +551,7 @@ workflow is not nested, retrieve all datalinks.
 
 		
 			<div id="get-processor-links-method" class="method-detail ">
-				<a name="M000017"></a>
+				<a name="M000019"></a>
 
 				<div class="method-heading">
 				
@@ -588,17 +588,41 @@ workflows.
 111:       <span class="ruby-identifier">proc_links</span> = <span class="ruby-constant">ProcessorLinks</span>.<span class="ruby-identifier">new</span>
 112:       
 113:       <span class="ruby-comment cmt"># SOURCES</span>
-114:       <span class="ruby-identifier">sources</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> }
+114:       <span class="ruby-identifier">sources</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}:.+/</span> }
 115:       <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sources</span> = []
-116:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> }
-117:       
-118:       <span class="ruby-comment cmt"># SINKS</span>
-119:       <span class="ruby-identifier">sinks</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}/</span> }
-120:       <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> = []
-121:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> }
+116: 
+117:       <span class="ruby-comment cmt"># SINKS</span>
+118:       <span class="ruby-identifier">sinks</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_datalinks</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">source</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{processor.name}:.+/</span> }
+119:       <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> = []
+120:       <span class="ruby-identifier">temp_sinks</span> = []
+121:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">temp_sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sink</span> }
 122:       
-123:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">proc_links</span>
-124:     <span class="ruby-keyword kw">end</span></pre>
+123:       <span class="ruby-comment cmt"># Match links by port into format</span>
+124:       <span class="ruby-comment cmt"># my_port:name_of_link_im_linked_to:its_port</span>
+125:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">connection</span><span class="ruby-operator">|</span>
+126:         <span class="ruby-identifier">link</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">sink</span>
+127:         <span class="ruby-identifier">connected_proc_name</span> = <span class="ruby-identifier">link</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>]
+128:         <span class="ruby-identifier">my_connection_port</span> = <span class="ruby-identifier">link</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">1</span>]
+129:         
+130:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">my_connection_port</span>
+131:           <span class="ruby-identifier">source</span> = <span class="ruby-identifier">my_connection_port</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;:&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">source</span>
+132:           <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>).<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+133:         <span class="ruby-keyword kw">end</span>
+134:       <span class="ruby-keyword kw">end</span>
+135:       
+136:       <span class="ruby-identifier">sinks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">connection</span><span class="ruby-operator">|</span>
+137:         <span class="ruby-identifier">link</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">source</span>
+138:         <span class="ruby-identifier">connected_proc_name</span> = <span class="ruby-identifier">link</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">0</span>]
+139:         <span class="ruby-identifier">my_connection_port</span> = <span class="ruby-identifier">link</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>)[<span class="ruby-value">1</span>]
+140:         
+141:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">my_connection_port</span>
+142:           <span class="ruby-identifier">sink</span> = <span class="ruby-identifier">my_connection_port</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;:&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">sink</span>
+143:           <span class="ruby-identifier">proc_links</span>.<span class="ruby-identifier">sinks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sink</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sink</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;:&quot;</span>).<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+144:         <span class="ruby-keyword kw">end</span>
+145:       <span class="ruby-keyword kw">end</span>
+146:       
+147:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">proc_links</span>
+148:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -642,7 +666,7 @@ Retrieve the top level dataflow ie the MAIN (containing) dataflow
 
 		
 			<div id="model-id-method" class="method-detail ">
-				<a name="M000016"></a>
+				<a name="M000017"></a>
 
 				<div class="method-heading">
 				
@@ -676,7 +700,7 @@ Retrieve the unique dataflow ID for the top level dataflow.
 
 		
 			<div id="processors-method" class="method-detail ">
-				<a name="M000009"></a>
+				<a name="M000010"></a>
 
 				<div class="method-heading">
 				
@@ -711,7 +735,7 @@ workflow is not nested, retrieve all processors.
 
 		
 			<div id="sinks-method" class="method-detail ">
-				<a name="M000014"></a>
+				<a name="M000015"></a>
 
 				<div class="method-heading">
 				
@@ -745,7 +769,7 @@ Retrieve the sinks(outputs) to the workflow
 
 		
 			<div id="sources-method" class="method-detail ">
-				<a name="M000012"></a>
+				<a name="M000013"></a>
 
 				<div class="method-heading">
 				
@@ -779,7 +803,7 @@ Retrieve the sources(inputs) to the workflow
 
 		
 			<div id="web-services-method" class="method-detail ">
-				<a name="M000004"></a>
+				<a name="M000006"></a>
 
 				<div class="method-heading">
 				

@@ -111,14 +111,38 @@ module T2Flow # :nodoc:
       proc_links = ProcessorLinks.new
       
       # SOURCES
-      sources = self.all_datalinks.select{ |x| x.sink =~ /#{processor.name}/ }
+      sources = self.all_datalinks.select { |x| x.sink =~ /#{processor.name}:.+/ }
       proc_links.sources = []
-      sources.each { |x| proc_links.sources << x.source }
-      
+
       # SINKS
-      sinks = self.all_datalinks.select{ |x| x.source =~ /#{processor.name}/ }
+      sinks = self.all_datalinks.select { |x| x.source =~ /#{processor.name}:.+/ }
       proc_links.sinks = []
-      sinks.each { |x| proc_links.sinks << x.sink }
+      temp_sinks = []
+      sinks.each { |x| temp_sinks << x.sink }
+      
+      # Match links by port into format
+      # my_port:name_of_link_im_linked_to:its_port
+      sources.each do |connection|
+        link = connection.sink
+        connected_proc_name = link.split(":")[0]
+        my_connection_port = link.split(":")[1]
+        
+        if my_connection_port
+          source = my_connection_port << ":" << connection.source
+          proc_links.sources << source if source.split(":").size == 3
+        end
+      end
+      
+      sinks.each do |connection|
+        link = connection.source
+        connected_proc_name = link.split(":")[0]
+        my_connection_port = link.split(":")[1]
+        
+        if my_connection_port
+          sink = my_connection_port << ":" << connection.sink
+          proc_links.sinks << sink if sink.split(":").size == 3
+        end
+      end
       
       return proc_links
     end
@@ -218,9 +242,11 @@ module T2Flow # :nodoc:
 
 
   # This object is returned after invoking model.get_processor_links(processor)
-  # .  The object contains two lists of processors.  Each element has
-  #  a name of the processor and the port used for the linking,
-  #  seperated by a colon (:) i.e. "name_of_processor:port_name"
+  # .  The object contains two lists of processors.  Each element consists of: 
+  # the input or output port the processor uses as a link, the name of the
+  # processor being linked, and the port of the processor used for the linking,
+  # all seperated by a colon (:) i.e. 
+  #   my_port:name_of_processor:processor_port
   class ProcessorLinks
     # The processors whose output is fed as input into the processor used in
     # model.get_processors_linked_to(processor).

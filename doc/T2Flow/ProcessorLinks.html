@@ -128,11 +128,13 @@
 		<div id="description">
 			<p>
 This object is returned after invoking model.get_processor_links(processor)
-. The object contains two lists of processors. Each element has
+. The object contains two lists of processors. Each element consists of:
+the input or output port the processor uses as a link, the name of the
+processor being linked, and the port of the processor used for the linking,
+all seperated by a colon (:) i.e.
 </p>
 <pre>
- a name of the processor and the port used for the linking,
- seperated by a colon (:) i.e. &quot;name_of_processor:port_name&quot;
+  my_port:name_of_processor:processor_port
 </pre>
 
 		</div>
