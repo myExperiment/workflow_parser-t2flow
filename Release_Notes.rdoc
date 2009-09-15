@@ -3,6 +3,9 @@ Released:: Monday, September 14, 2009
 
 == Added Functionality
 - Retrieval of processors directly connected/linked to the given processor.
+- Retrieval of web services.
+
 === New instance method in T2Flow::Model
       get_processor_links(processor)
+      web_services
 === New supporting object T2Flow::ProcessorLinks
