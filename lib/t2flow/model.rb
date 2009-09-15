@@ -36,6 +36,11 @@ module T2Flow # :nodoc:
       self.all_processors.select { |x| x.type =~ /wsdl|soaplab|biomoby/i }
     end
     
+    # Retrieve ALL local workers WITHIN the workflow
+    def local_workers
+      self.all_processors.select { |x| x.type =~ /local/i }
+    end
+    
     # Retrieve the datalinks from the top level of a nested workflow.
     # If the workflow is not nested, retrieve all datalinks.
     def datalinks
