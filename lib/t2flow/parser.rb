@@ -83,6 +83,8 @@ module T2Flow
           when "name": source.name = elt.content
           when "annotations"
             elt.each do |ann|
+              next if ann.nil? || ann.empty?
+              
               node = LibXML::XML::Parser.string("#{ann}").parse
               content_node = node.find_first("//annotationBean")
               content = content_node.child.next.content
@@ -110,6 +112,8 @@ module T2Flow
           when "name": sink.name = elt.content
           when "annotations"
             elt.each do |ann|
+              next if ann.nil? || ann.empty?
+              
               node = LibXML::XML::Parser.string("#{ann}").parse
               content_node = node.find_first("//annotationBean")
               content = content_node.child.next.content
