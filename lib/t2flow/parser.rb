@@ -223,11 +223,11 @@ module T2Flow
       link.each do |sink_source|
         case sink_source.name
           when "sink"
-            datalink.sink = sink_source.first.content
-            datalink.sink += ":" + sink_source.last.content if sink_source["type"] == "processor"
+            datalink.sink = sink_source.child.next.content
+            datalink.sink += ":" + sink_source.last.prev.content if sink_source["type"] == "processor"
           when "source"
-            datalink.source = sink_source.first.content
-            datalink.source += ":" + sink_source.last.content if sink_source["type"] == "processor"
+            datalink.source = sink_source.child.next.content
+            datalink.source += ":" + sink_source.last.prev.content if sink_source["type"] == "processor"
         end
       end
       
@@ -235,7 +235,7 @@ module T2Flow
     end
     
     def add_coordination(dataflow, condition) # :nodoc:
-      return if coordination.nil? || coordination.content.chomp.strip.empty?
+      return if condition.nil? || condition.content.chomp.strip.empty?
 
       coordination = Coordination.new
       
@@ -250,17 +250,17 @@ module T2Flow
       
       node = LibXML::XML::Parser.string("#{annotation}").parse
       content_node = node.find_first("//annotationBean")
-      content = content_node.child.next.content
-      
+      content = content_node.child.child.content
+
       case content_node["class"]
         when /freetextdescription/i
-          dataflow.annotations.descriptions = [] unless dataflow.annotations.descriptions
+          dataflow.annotations.descriptions ||= []
           dataflow.annotations.descriptions << content
         when /descriptivetitle/i
-          dataflow.annotations.titles = [] unless dataflow.annotations.titles
+          dataflow.annotations.titles ||= []
           dataflow.annotations.titles << content
         when /author/i
-          dataflow.annotations.authors = [] unless dataflow.annotations.authors
+          dataflow.annotations.authors ||= []
           dataflow.annotations.authors << content
         end # case
     end
