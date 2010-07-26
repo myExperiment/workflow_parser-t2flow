@@ -189,6 +189,10 @@ module T2Flow # :nodoc:
       @coordinations = []
     end
     
+    def name
+      @annotations.name
+    end
+    
     # Retrieve beanshell processors specific to this dataflow.
     def beanshells
       @processors.select { |x| x.type == "beanshell" }

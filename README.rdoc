@@ -1,7 +1,7 @@
 = Taverna[http://taverna.sourceforge.net] 2 Interaction Gem
 
 Authors::       Mannie Tagarira, David Withers
-Version::       0.1.2
+Version::       0.1.4
 Contact::       mailto:mannie@mygrid.org.uk
 URL::           http://taverna.sourceforge.net/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)

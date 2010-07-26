@@ -41,6 +41,8 @@ module T2Flow
       end
     
       element.each do |dataflow|
+        next if dataflow["id"].nil? || dataflow["id"].chomp.strip.empty?
+
         dataflow_obj = Dataflow.new
         dataflow_obj.dataflow_id = dataflow["id"]
         
@@ -76,14 +78,16 @@ module T2Flow
     end
     
     def add_source(dataflow, port) # :nodoc:
+      return if port.nil? || port.content.chomp.strip.empty?
+
       source = Source.new
-      
+
       port.each do |elt|
         case elt.name
           when "name": source.name = elt.content
           when "annotations"
             elt.each do |ann|
-              next if ann.nil? || ann.empty?
+              next if ann.nil? || ann.content.chomp.strip.empty?
               
               node = LibXML::XML::Parser.string("#{ann}").parse
               content_node = node.find_first("//annotationBean")
@@ -105,6 +109,8 @@ module T2Flow
     end
     
     def add_sink(dataflow, port) # :nodoc:
+      return if port.nil? || port.content.chomp.strip.empty?
+      
       sink = Sink.new
       
       port.each do |elt|
@@ -112,7 +118,7 @@ module T2Flow
           when "name": sink.name = elt.content
           when "annotations"
             elt.each do |ann|
-              next if ann.nil? || ann.empty?
+              next if ann.nil? || ann.content.chomp.strip.empty?
               
               node = LibXML::XML::Parser.string("#{ann}").parse
               content_node = node.find_first("//annotationBean")
@@ -134,6 +140,8 @@ module T2Flow
     end
     
     def add_processor(dataflow, element) # :nodoc:
+      return if element.nil? || element.content.chomp.strip.empty?
+
       processor = Processor.new
       
       temp_inputs = []
@@ -208,6 +216,8 @@ module T2Flow
     end
     
     def add_link(dataflow, link) # :nodoc:
+      return if link.nil? || link.content.chomp.strip.empty?
+
       datalink = Datalink.new
       
       link.each do |sink_source|
@@ -225,6 +235,8 @@ module T2Flow
     end
     
     def add_coordination(dataflow, condition) # :nodoc:
+      return if coordination.nil? || coordination.content.chomp.strip.empty?
+
       coordination = Coordination.new
       
       coordination.control = condition["control"]
