@@ -15,8 +15,9 @@ module T2Flow
       'apiconsumer' => 'palegreen',
       'beanshell' => 'burlywood2',
       'biomart' => 'lightcyan2',                      
-      'local' => 'mediumorchid2',
+      'localworker' => 'mediumorchid2',
       'biomobywsdl' => 'darkgoldenrod1',
+      'biomoby' => 'darkgoldenrod1',
       'biomobyobject' => 'gold',
       'biomobyparser' => 'white',
       'inferno' => 'violetred1',
@@ -25,12 +26,15 @@ module T2Flow
       'rserv' => 'lightgoldenrodyellow',
       'seqhound' => '#836fff',
       'soaplabwsdl' => 'lightgoldenrodyellow',
+      'soaplab' => 'lightgoldenrodyellow',
       'stringconstant' => 'lightsteelblue',
       'talisman' => 'plum2',
       'bsf' => 'burlywood2',
       'abstractprocessor' => 'lightgoldenrodyellow',
+      'xmlsplitter' => 'gold',
       'rshell' => 'lightgoldenrodyellow',
       'arbitrarywsdl' => 'darkolivegreen3',
+      'wsdl' => 'darkolivegreen3',
       'workflow' => 'crimson'}
     
     @@fill_colours = %w{white aliceblue antiquewhite beige}

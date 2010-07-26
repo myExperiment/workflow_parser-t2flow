@@ -2,12 +2,12 @@
 
 spec = Gem::Specification.new do |s| 
   s.name = "taverna-t2flow"
-  s.version = "0.1.1"
-  s.date = "2009-09-16"
+  s.version = "0.1.2"
+  s.date = "2010-07-22"
   s.summary = "Support for interacting with the Taverna 2 workflow system (T2Flow)."
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows.  An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
   
-  s.authors = ["Emmanuel Tagarira", "David Withers"]
+  s.authors = ["Mannie Tagarira", "David Withers"]
   s.email = "mannie@mygrid.org.uk"
   s.homepage = "http://www.mygrid.org.uk/"
   
@@ -22,8 +22,6 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
 
   s.add_dependency("libxml-ruby", ">=1.1.3")
-  s.add_dependency("rdoc", ">=2.4.3")
-  s.add_dependency("darkfish-rdoc", ">=1.1.5")
   s.required_ruby_version = Gem::Requirement.new(">=1.0.1")
   s.rubygems_version = "1.3.5"
   

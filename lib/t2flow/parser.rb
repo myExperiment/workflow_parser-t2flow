@@ -230,6 +230,8 @@ module T2Flow
     end
     
     def add_annotation(dataflow, annotation) # :nodoc:
+      return if annotation.nil? || annotation.empty?
+      
       node = LibXML::XML::Parser.string("#{annotation}").parse
       content_node = node.find_first("//annotationBean")
       content = content_node.child.next.content

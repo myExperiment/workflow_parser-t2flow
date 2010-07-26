@@ -1,7 +1,7 @@
 = Taverna[http://taverna.sourceforge.net] 2 Interaction Gem
 
-Authors::       Emmanuel Tagarira, David Withers
-Version::       0.1.1
+Authors::       Mannie Tagarira, David Withers
+Version::       0.1.2
 Contact::       mailto:mannie@mygrid.org.uk
 URL::           http://taverna.sourceforge.net/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
@@ -13,8 +13,6 @@ Copyright::     (c) 2008-2009 University of Manchester, UK
 
 This is a Ruby library to support the interaction with Taverna[http://taverna.sourceforge.net] version 2 workflows (T2Flows).  This relies on the functionality provided by the libxml library.  To be able to utilise this gem to its full potential, you will need to have the following installed on your system.
 - GraphViz[http://www.graphviz.org/Download.php] (a graph visualization package)
-- Rdoc gem
-- Darkfish-Rdoc gem
 
 
 
@@ -25,14 +23,8 @@ Much like the Taverna[http://taverna.sourceforge.net] 1 Scufl model, T2Flows con
 
 
 == Installation
-To install the gems required by the Taverna 2 gem library, type into your command prompt:
-  [sudo] gem install libxml-ruby
-  [sudo] gem install rdoc
-  [sudo] gem install darkfish-rdoc
-
-When you have the required gems on your system, you may install this gem using the following commands:
-  gem sources -a http://gems.github.com
-  [sudo] gem install mannie-taverna-t2flow
+To install the Taverna 2 gem, type into your command prompt:
+  [sudo] gem install taverna-t2flow
 
 
 
