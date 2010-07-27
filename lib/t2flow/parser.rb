@@ -223,11 +223,11 @@ module T2Flow
       link.each do |sink_source|
         case sink_source.name
           when "sink"
-            datalink.sink = sink_source.child.next.content
-            datalink.sink += ":" + sink_source.last.prev.content if sink_source["type"] == "processor"
+            datalink.sink = sink_source.child.content
+            datalink.sink += ":" + sink_source.last.content if sink_source["type"] == "processor"
           when "source"
-            datalink.source = sink_source.child.next.content
-            datalink.source += ":" + sink_source.last.prev.content if sink_source["type"] == "processor"
+            datalink.source = sink_source.child.content
+            datalink.source += ":" + sink_source.last.content if sink_source["type"] == "processor"
         end
       end
       
@@ -250,7 +250,7 @@ module T2Flow
       
       node = LibXML::XML::Parser.string("#{annotation}").parse
       content_node = node.find_first("//annotationBean")
-      content = content_node.child.child.content
+      content = content_node.child.next.content if content_node.child.next
 
       case content_node["class"]
         when /freetextdescription/i
