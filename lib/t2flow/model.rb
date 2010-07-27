@@ -13,6 +13,12 @@ module T2Flow # :nodoc:
     # Creates an empty model for a Taverna 2 workflow.
     def initialize
       @dataflows = []
+      @dependencies = []
+    end
+    
+    # Retrieve the top level dataflow's name
+    def name
+      main.name
     end
     
     # Retrieve the top level dataflow ie the MAIN (containing) dataflow
@@ -71,6 +77,19 @@ module T2Flow # :nodoc:
       procs =[]
       @dataflows.each { |dataflow| procs << dataflow.processors }
       return procs.flatten
+    end
+
+    # Retrieve coordinations from the top level of a nested workflow.
+    # If the workflow is not nested, retrieve all coordinations.
+    def coordinations
+      self.main.coordinations
+    end
+    
+    # Retrieve ALL the coordinations found in a nested workflow
+    def all_coordinations
+      coordinations =[]
+      @dataflows.each { |dataflow| coordinations << dataflow.coordinations }
+      return coordinations.flatten
     end
     
     # Retrieve the sources(inputs) to the workflow
@@ -282,6 +301,10 @@ module T2Flow # :nodoc:
     
     # A list of authors of the dataflow
     attr_accessor :authors
+    
+    def initialize
+      @authors, @descriptions, @titles = [], [], []
+    end
   end
   
   

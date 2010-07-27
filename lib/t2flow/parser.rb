@@ -235,7 +235,7 @@ module T2Flow
     end
     
     def add_coordination(dataflow, condition) # :nodoc:
-      return if condition.nil? || condition.content.chomp.strip.empty?
+      return if condition.nil?
 
       coordination = Coordination.new
       
@@ -254,13 +254,10 @@ module T2Flow
 
       case content_node["class"]
         when /freetextdescription/i
-          dataflow.annotations.descriptions ||= []
           dataflow.annotations.descriptions << content
         when /descriptivetitle/i
-          dataflow.annotations.titles ||= []
           dataflow.annotations.titles << content
         when /author/i
-          dataflow.annotations.authors ||= []
           dataflow.annotations.authors << content
         end # case
     end
