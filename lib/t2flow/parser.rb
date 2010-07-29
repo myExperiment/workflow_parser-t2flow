@@ -45,6 +45,7 @@ module T2Flow
 
         dataflow_obj = Dataflow.new
         dataflow_obj.dataflow_id = dataflow["id"]
+        dataflow_obj.role = dataflow["role"]
         
         dataflow.each do |elt|
           case elt.name
@@ -188,6 +189,8 @@ module T2Flow
                           processor.biomoby_category = value_node.content
                         when "script"
                           processor.script = value_node.content
+                        when "value"
+                          processor.value = value_node.content
                         when "inputs" # ALL ports present in beanshell
                           value_node.each { |input| 
                             input.each { |x| 

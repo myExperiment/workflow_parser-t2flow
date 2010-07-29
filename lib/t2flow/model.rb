@@ -198,6 +198,9 @@ module T2Flow # :nodoc:
     # The unique identifier of the dataflow.
     attr_accessor :dataflow_id
     
+    # The role of the workflow
+    attr_accessor :role
+
     # Creates a new Dataflow object.
     def initialize
       @annotations = DataflowAnnotation.new
@@ -266,6 +269,10 @@ module T2Flow # :nodoc:
     
     # Category for the biomoby service.
     attr_accessor :biomoby_category
+
+    # Value for string constants
+    attr_accessor :value
+
   end
 
 
