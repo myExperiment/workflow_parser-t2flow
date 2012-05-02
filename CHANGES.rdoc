@@ -1,5 +1,9 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.3.0
+
+* Minor changes for ruby 1.9 compatibility.
+
 == Version 0.2.0
 
 * Updated the unit tests which can now be run by entering "ruby tests/run_tests.rb"
