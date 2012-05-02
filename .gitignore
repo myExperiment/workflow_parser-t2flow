@@ -1,3 +1,4 @@
-*.gem
 .loadpath
 .project
+html/
+pkg/
