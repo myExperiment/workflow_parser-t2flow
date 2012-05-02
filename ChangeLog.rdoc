@@ -1,7 +1,0 @@
-= Version 0.2.0
-Released:: Tuesday, July 27, 2010
-
-== Changes
-- Updated the unit tests which can now be run by entering "ruby tests/run_tests.rb"
-- Misc. bug fixes.
-- Added the following methods to the T2Flow::Model class: coordinates, all_coordinates, name
