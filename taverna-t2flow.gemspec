@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "taverna-t2flow"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert Haines", "David Withers", "Mannie Tagarira"]
@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://www.taverna.org.uk/"
   s.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.21"
   s.summary = "Support for interacting with Taverna 2 workflows."
   s.test_files = ["test/run_tests.rb"]
 
