@@ -85,7 +85,8 @@ module T2Flow
 
       port.each do |elt|
         case elt.name
-          when "name": source.name = elt.content
+          when "name"
+            source.name = elt.content
           when "annotations"
             elt.each do |ann|
               next if ann.nil? || ann.content.chomp.strip.empty?
@@ -116,7 +117,8 @@ module T2Flow
       
       port.each do |elt|
         case elt.name
-          when "name": sink.name = elt.content
+          when "name"
+            sink.name = elt.content
           when "annotations"
             elt.each do |ann|
               next if ann.nil? || ann.content.chomp.strip.empty?
