@@ -14,13 +14,13 @@ require 'jeweler'
 
 task :default => [:test]
 
-T2FLOW_GEM_VERSION = "0.3.0"
+T2FLOW_GEM_VERSION = "0.4.0"
 
 Jeweler::Tasks.new do |s|
   s.name             = "taverna-t2flow"
   s.version          = T2FLOW_GEM_VERSION
-  s.authors          = ["Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.email            = ["rhaines@manchester.ac.uk"]
+  s.authors          = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
+  s.email            = ["finn.bacall@cs.man.ac.uk", "rhaines@manchester.ac.uk"]
   s.homepage         = "http://www.taverna.org.uk/"
   s.platform         = Gem::Platform::RUBY
   s.summary          = "Support for interacting with Taverna 2 workflows."
