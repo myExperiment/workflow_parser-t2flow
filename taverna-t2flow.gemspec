@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.date = "2012-11-27"
+  s.date = "2012-12-03"
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows. An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
   s.email = ["finn.bacall@cs.man.ac.uk", "rhaines@manchester.ac.uk"]
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".rvmrc",
     "CHANGES.rdoc",
     "LICENCE",
     "README.rdoc",
@@ -37,11 +38,13 @@ Gem::Specification.new do |s|
     "test/fixtures/999.t2flow",
     "test/fixtures/basic.t2flow",
     "test/fixtures/coordinated.t2flow",
+    "test/fixtures/image_to_tiff_migration_action.t2flow",
     "test/fixtures/linked.t2flow",
     "test/fixtures/nested.t2flow",
     "test/fixtures/processors.t2flow",
     "test/run_tests.rb",
     "test/test_bogus_workflows.rb",
+    "test/test_component_workflows.rb",
     "test/test_helper.rb",
     "test/test_starter_pack_workflows.rb"
   ]
