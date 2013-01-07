@@ -1,6 +1,6 @@
 = Taverna[http://taverna.sourceforge.net] 2 Interaction Gem
 
-Authors::       Robert Haines, Mannie Tagarira, David Withers
+Authors::       Finn Bacall, Robert Haines, Mannie Tagarira, David Withers
 Contact::       mailto:support@mygrid.org.uk
 URL::           http://www.taverna.org.uk/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
