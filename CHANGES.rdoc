@@ -1,5 +1,9 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.4.3
+
+* Fixed issue with nested workflow names and control links not being connected.
+
 == Version 0.4.2
 
 * Altered colours of various activities to align with the latest version of Taverna.

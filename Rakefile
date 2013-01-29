@@ -14,7 +14,7 @@ require 'jeweler'
 
 task :default => [:test]
 
-T2FLOW_GEM_VERSION = "0.4.2"
+T2FLOW_GEM_VERSION = "0.4.3"
 
 Jeweler::Tasks.new do |s|
   s.name             = "taverna-t2flow"

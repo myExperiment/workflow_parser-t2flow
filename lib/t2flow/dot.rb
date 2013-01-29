@@ -122,7 +122,7 @@ module T2Flow
       # nested workflows
       if "#{processor.type}" == "workflow"
         dataflow = @t2flow_model.dataflow(processor.dataflow_id)
-        write_dataflow(stream, dataflow, prefix + dataflow.annotations.name, dataflow.annotations.name, depth.next)
+        write_dataflow(stream, dataflow, prefix + processor.name, processor.name, depth.next)
       else
         stream.puts " \"#{prefix}#{processor.name}\" ["
         stream.puts "  fillcolor=\"#{get_colour processor.type}\","
@@ -204,7 +204,7 @@ module T2Flow
         processor = dataflow.processors.select{|p| p.name == link.source.split(':')[0]}[0]
         if "#{processor.type}" == "workflow"
           df = @t2flow_model.dataflow(processor.dataflow_id)
-          stream.write " \"#{prefix}#{df.annotations.name}WORKFLOWINTERNALSINK_#{link.source.split(':')[1]}\""
+          stream.write " \"#{prefix}#{processor.name}WORKFLOWINTERNALSINK_#{link.source.split(':')[1]}\""
         else
           stream.write " \"#{prefix}#{processor.name}\""
         end
@@ -216,7 +216,7 @@ module T2Flow
         processor = dataflow.processors.select{|p| p.name == link.sink.split(':')[0]}[0]
         if "#{processor.type}" == "workflow"
           df = @t2flow_model.dataflow(processor.dataflow_id)
-          stream.write "\"#{prefix}#{df.annotations.name}WORKFLOWINTERNALSOURCE_#{link.sink.split(':')[1]}\""
+          stream.write "\"#{prefix}#{processor.name}WORKFLOWINTERNALSOURCE_#{link.sink.split(':')[1]}\""
         else
           stream.write "\"#{prefix}#{processor.name}\""
         end
