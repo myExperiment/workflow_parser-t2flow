@@ -1,5 +1,9 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.4.4
+
+* Fixed issue with flow control in nested workflows with no input ports.
+
 == Version 0.4.3
 
 * Fixed issue with nested workflow names and control links not being connected.

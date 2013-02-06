@@ -136,24 +136,22 @@ module T2Flow
     end
     
     def write_source_cluster(stream, sources, prefix) # :nodoc:
-      if sources.length > 0
-        stream.puts " subgraph cluster_#{prefix}sources {"
-        stream.puts '  style="dotted"'
-        stream.puts '  label="Workflow Inputs"'
-        stream.puts '  fontname="Helvetica"'
-        stream.puts '  fontsize="10"'
-        stream.puts '  fontcolor="black"'
-        stream.puts '  rank="same"'
-        stream.puts " \"#{prefix}WORKFLOWINTERNALSOURCECONTROL\" ["
-        stream.puts '  shape="triangle",'
-        stream.puts '  width="0.2",'
-        stream.puts '  height="0.2",'
-        stream.puts '  fillcolor="brown1"'
-        stream.puts '  label=""'
-        stream.puts ' ]'
-        sources.each {|source| write_source(stream, source, prefix)}
-        stream.puts ' }'
-      end
+      stream.puts " subgraph cluster_#{prefix}sources {"
+      stream.puts '  style="dotted"'
+      stream.puts '  label="Workflow Inputs"'
+      stream.puts '  fontname="Helvetica"'
+      stream.puts '  fontsize="10"'
+      stream.puts '  fontcolor="black"'
+      stream.puts '  rank="same"'
+      stream.puts " \"#{prefix}WORKFLOWINTERNALSOURCECONTROL\" ["
+      stream.puts '  shape="triangle",'
+      stream.puts '  width="0.2",'
+      stream.puts '  height="0.2",'
+      stream.puts '  fillcolor="brown1"'
+      stream.puts '  label=""'
+      stream.puts ' ]'
+      sources.each {|source| write_source(stream, source, prefix)}
+      stream.puts ' }'
     end
     
     def write_source(stream, source, prefix) # :nodoc:
@@ -167,24 +165,22 @@ module T2Flow
     end
     
     def write_sink_cluster(stream, sinks, prefix) # :nodoc:
-      if sinks.length > 0
-        stream.puts " subgraph cluster_#{prefix}sinks {"
-        stream.puts '  style="dotted"'
-        stream.puts '  label="Workflow Outputs"'
-        stream.puts '  fontname="Helvetica"'
-        stream.puts '  fontsize="10"'
-        stream.puts '  fontcolor="black"'
-        stream.puts '  rank="same"'
-        stream.puts " \"#{prefix}WORKFLOWINTERNALSINKCONTROL\" ["
-        stream.puts '  shape="invtriangle",'
-        stream.puts '  width="0.2",'
-        stream.puts '  height="0.2",'
-        stream.puts '  fillcolor="chartreuse3"'
-        stream.puts '  label=""'
-        stream.puts ' ]'
-        sinks.each {|sink| write_sink(stream, sink, prefix)}
-        stream.puts ' }'
-      end
+      stream.puts " subgraph cluster_#{prefix}sinks {"
+      stream.puts '  style="dotted"'
+      stream.puts '  label="Workflow Outputs"'
+      stream.puts '  fontname="Helvetica"'
+      stream.puts '  fontsize="10"'
+      stream.puts '  fontcolor="black"'
+      stream.puts '  rank="same"'
+      stream.puts " \"#{prefix}WORKFLOWINTERNALSINKCONTROL\" ["
+      stream.puts '  shape="invtriangle",'
+      stream.puts '  width="0.2",'
+      stream.puts '  height="0.2",'
+      stream.puts '  fillcolor="chartreuse3"'
+      stream.puts '  label=""'
+      stream.puts ' ]'
+      sinks.each {|sink| write_sink(stream, sink, prefix)}
+      stream.puts ' }'
     end
     
     def write_sink(stream, sink, prefix) # :nodoc:

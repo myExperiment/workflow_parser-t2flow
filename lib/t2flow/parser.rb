@@ -175,8 +175,8 @@ module T2Flow
       datalink = Datalink.new
       
       if sink = link.find_first('./t2:sink')
-        if sink["type"] == "processor" || sink["type"] == "merge"
-          datalink.sink = "#{sink.find_first('./t2:processor').content}:"
+        if processor = sink.find_first('./t2:processor')
+          datalink.sink = "#{processor.content}:"
         else
           datalink.sink = ""
         end
@@ -184,8 +184,8 @@ module T2Flow
       end
 
       if source = link.find_first('./t2:source')
-        if source["type"] == "processor" || source["type"] == "merge"
-          datalink.source = "#{source.find_first('./t2:processor').content}:"
+        if processor = source.find_first('./t2:processor')
+          datalink.source = "#{processor.content}:"
         else
           datalink.source = ""
         end
