@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "taverna-t2flow"
-  s.version = "0.4.4"
+  s.version = "0.4.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.date = "2013-02-06"
+  s.date = "2013-03-14"
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows. An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
-  s.email = ["finn.bacall@cs.man.ac.uk", "rhaines@manchester.ac.uk"]
+  s.email = ["support@mygrid.org.uk"]
   s.extra_rdoc_files = [
     "CHANGES.rdoc",
     "LICENCE",
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "lib/t2flow/dot.rb",
     "lib/t2flow/model.rb",
     "lib/t2flow/parser.rb",
+    "lib/taverna-t2flow.rb",
     "taverna-t2flow.gemspec",
     "test/fixtures/1000.t2flow",
     "test/fixtures/1001.t2flow",
@@ -51,7 +52,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://www.taverna.org.uk/"
   s.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "1.8.21"
   s.summary = "Support for interacting with Taverna 2 workflows."
   s.test_files = ["test/run_tests.rb"]
 

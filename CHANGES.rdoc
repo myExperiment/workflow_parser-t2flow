@@ -1,5 +1,9 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.4.5
+
+* Add a top-level include file that matches the gem name.
+
 == Version 0.4.4
 
 * Fixed issue with flow control in nested workflows with no input ports.
