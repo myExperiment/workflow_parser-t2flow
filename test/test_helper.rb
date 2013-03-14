@@ -1,3 +1,12 @@
+# Copyright (c) 2009-2013 The University of Manchester, UK.
+#
+# See LICENCE file for details.
+#
+# Authors: Finn Bacall
+#          Robert Haines
+#          David Withers
+#          Mannie Tagarira
+
 module TestHelper
   
   def generic_model_test(model)

@@ -1,10 +1,11 @@
-require 'rubygems'
-require 'test/unit'
-
-require File.expand_path(File.join(__FILE__, "..", "..", "lib", "t2flow", "model.rb"))
-require File.expand_path(File.join(__FILE__, "..", "..", "lib", "t2flow", "parser.rb"))
-
-require File.expand_path(File.join(__FILE__, "..", "test_helper.rb"))
+# Copyright (c) 2009-2013 The University of Manchester, UK.
+#
+# See LICENCE file for details.
+#
+# Authors: Finn Bacall
+#          Robert Haines
+#          David Withers
+#          Mannie Tagarira
 
 class StarterPackWorkflowsTest < Test::Unit::TestCase
     

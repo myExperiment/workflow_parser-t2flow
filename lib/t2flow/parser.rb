@@ -1,5 +1,15 @@
-require "libxml"
-require "cgi"
+# Copyright (c) 2009-2013 The University of Manchester, UK.
+#
+# See LICENCE file for details.
+#
+# Authors: Finn Bacall
+#          Robert Haines
+#          David Withers
+#          Mannie Tagarira
+
+require 'rubygems'
+require 'libxml'
+require 'cgi'
 
 module T2Flow
   

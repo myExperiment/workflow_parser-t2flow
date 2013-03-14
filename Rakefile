@@ -1,8 +1,11 @@
-# Copyright (c) 2012 The University of Manchester, UK.
+# Copyright (c) 2009-2013 The University of Manchester, UK.
 #
 # See LICENCE file for details.
 #
-# Author: Robert Haines
+# Authors: Finn Bacall
+#          Robert Haines
+#          David Withers
+#          Mannie Tagarira
 
 require 'rubygems'
 require 'rake'
@@ -20,7 +23,7 @@ Jeweler::Tasks.new do |s|
   s.name             = "taverna-t2flow"
   s.version          = T2FLOW_GEM_VERSION
   s.authors          = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.email            = ["finn.bacall@cs.man.ac.uk", "rhaines@manchester.ac.uk"]
+  s.email            = ["support@mygrid.org.uk"]
   s.homepage         = "http://www.taverna.org.uk/"
   s.platform         = Gem::Platform::RUBY
   s.summary          = "Support for interacting with Taverna 2 workflows."

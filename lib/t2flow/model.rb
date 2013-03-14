@@ -1,4 +1,14 @@
-# This is the module containing the T2Flow model implementation i.e. the model structure/definition and all its internals.
+# Copyright (c) 2009-2013 The University of Manchester, UK.
+#
+# See LICENCE file for details.
+#
+# Authors: Finn Bacall
+#          Robert Haines
+#          David Withers
+#          Mannie Tagarira
+#
+# This is the module containing the T2Flow model implementation i.e. the
+# model structure/definition and all its internals.
 
 module T2Flow # :nodoc:
   
