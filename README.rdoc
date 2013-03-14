@@ -4,7 +4,7 @@ Authors::       Finn Bacall, Robert Haines, Mannie Tagarira, David Withers
 Contact::       mailto:support@mygrid.org.uk
 URL::           http://www.taverna.org.uk/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
-Copyright::     (c) 2008-2012, University of Manchester, UK
+Copyright::     (c) 2008-2013, University of Manchester, UK
 
 == Synopsis
 
@@ -34,10 +34,10 @@ To install the Taverna 2 gem, type into your command prompt:
 
 == Usage
 
-To be able to generate at least a T2Flow model using the gem, you need to
-include in your ruby code the following lines:
-  require "t2flow/model.rb"
-  require "t2flow/parser.rb"
+To be able to use this gem, you need to require the library:
+  require 'taverna-t2flow'
+
+=== t2flow models
   
 To generate the model you can then use the gem as follows:
   foo = File.new("path/to/workflow/file", "r")
@@ -58,10 +58,9 @@ You can also interact with remote workflows.
   foo = Uri.parse("xxxx://uri_to_workflow").read
   bar = T2Flow::Parser.new.parse(foo)
 
-To be enable you to draw images of the T2Flow, you need to include:
-  require "t2flow/dot.rb"
+=== t2flow diagrams
 
-To be able to use any functionality included in "t2flow/dot.rb", you need to
+To be able to use any diagram functionality included in thsi gem you need to
 have GraphViz[http://www.graphviz.org/Download.php] installed on your system.
 Once this package has been installed, you may use the gem to draw an image
 showing the structure of the T2Flow as follows.
