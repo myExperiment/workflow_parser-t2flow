@@ -1,5 +1,6 @@
 .loadpath
 .project
 .idea/
+.rvmrc
 html/
 pkg/
