@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "taverna-t2flow"
-  s.version = "0.4.5"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.date = "2013-03-14"
+  s.date = "2014-03-10"
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows. An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
   s.email = ["support@mygrid.org.uk"]
   s.extra_rdoc_files = [

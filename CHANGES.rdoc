@@ -1,5 +1,10 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.5.0
+
+* Split out model classes into different files.
+* Added +configuration+ hash to Processor model, where various type-specific attributes are stored.
+
 == Version 0.4.5
 
 * Add a top-level include file that matches the gem name.
