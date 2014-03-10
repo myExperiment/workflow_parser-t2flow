@@ -139,21 +139,21 @@ module T2Flow
                     activity_node.each_element do |value_node|
                       case value_node.name
                         when "wsdl"
-                          processor.wsdl = value_node.content
+                          processor.configuration[:wsdl] = value_node.content
                         when "operation"
-                          processor.wsdl_operation = value_node.content
+                          processor.configuration[:wsdl_operation] = value_node.content
                         when /endpoint/i
-                          processor.endpoint = value_node.content
+                          processor.configuration[:endpoint] = value_node.content
                         when /servicename/i
-                          processor.biomoby_service_name = value_node.content
+                          processor.configuration[:biomoby_service_name] = value_node.content
                         when /authorityname/i
-                          processor.biomoby_authority_name = value_node.content
+                          processor.configuration[:biomoby_authority_name] = value_node.content
                         when "category"
-                          processor.biomoby_category = value_node.content
+                          processor.configuration[:biomoby_category] = value_node.content
                         when "script"
-                          processor.script = value_node.content
+                          processor.configuration[:script] = value_node.content
                         when "value"
-                          processor.value = value_node.content
+                          processor.configuration[:value] = value_node.content
                         when "inputs" # ALL ports present in beanshell
                           value_node.each_element do |input|
                             input.each_element do |x|

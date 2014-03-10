@@ -32,31 +32,49 @@ module T2Flow
 
     # For processors of type "arbitrarywsdl", this is the URI to the location
     # of the wsdl file.
-    attr_accessor :wsdl
+    def wsdl
+      @configuration[:wsdl]
+    end
 
     # For processors of type "arbitrarywsdl", this is the operation invoked.
-    attr_accessor :wsdl_operation
+    def wsdl_operation
+      @configuration[:wsdl_operation]
+    end
 
     # For soaplab and biomoby services, this is the endpoint URI.
-    attr_accessor :endpoint
+    def endpoint
+      @configuration[:endpoint]
+    end
 
     # Authority name for the biomoby service.
-    attr_accessor :biomoby_authority_name
+    def biomoby_authority_name
+      @configuration[:biomoby_authority_name]
+    end
 
     # Service name for the biomoby service. This is not necessarily the same
     # as the processors name.
-    attr_accessor :biomoby_service_name
+    def biomoby_service_name
+      @configuration[:biomoby_service_name]
+    end
 
     # Category for the biomoby service.
-    attr_accessor :biomoby_category
+    def biomoby_category
+      @configuration[:biomoby_category]
+    end
 
     # Value for string constants
-    attr_accessor :value
+    def value
+      @configuration[:value]
+    end
 
     attr_accessor :semantic_annotation
 
+    # Hash containing details of the processors configuration.
+    attr_accessor :configuration
+
     def initialize
       @descriptions = []
+      @configuration = {}
     end
 
   end
