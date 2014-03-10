@@ -158,9 +158,11 @@ module T2Flow
                           processor.configuration[:interaction_page] = value_node.content
                         when "connectionSettings"
                           if processor.type == 'rshell'
-                            processor.configuration[:rserver] = value_node.find_first('./host').content + ":" +
+                            processor.configuration[:r_server] = value_node.find_first('./host').content + ":" +
                                 value_node.find_first('./port').content
                           end
+                        when "xpathExpression"
+                          processor.configuration[:xpath_expression] = value_node.content
                         when "inputs" # ALL ports present in beanshell
                           value_node.each_element do |input|
                             input.each_element do |x|
