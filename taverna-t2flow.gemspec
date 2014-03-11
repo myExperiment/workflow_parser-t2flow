@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
-  s.date = "2014-03-10"
+  s.date = "2014-03-11"
   s.description = "This a gem developed by myGrid for the purpose of interacting with Taverna 2 workflows. An example use would be the image genaration for the model representing Taverna 2 workflows as used in myExperiment."
   s.email = ["support@mygrid.org.uk"]
   s.extra_rdoc_files = [
@@ -18,13 +18,18 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".rvmrc",
     "CHANGES.rdoc",
     "LICENCE",
     "README.rdoc",
     "Rakefile",
     "lib/t2flow/dot.rb",
     "lib/t2flow/model.rb",
+    "lib/t2flow/model/coordination.rb",
+    "lib/t2flow/model/dataflow.rb",
+    "lib/t2flow/model/datalink.rb",
+    "lib/t2flow/model/port.rb",
+    "lib/t2flow/model/processor.rb",
+    "lib/t2flow/model/semantic_annotation.rb",
     "lib/t2flow/parser.rb",
     "lib/taverna-t2flow.rb",
     "taverna-t2flow.gemspec",
@@ -38,6 +43,7 @@ Gem::Specification.new do |s|
     "test/fixtures/998.t2flow",
     "test/fixtures/999.t2flow",
     "test/fixtures/basic.t2flow",
+    "test/fixtures/component_using_workflow.t2flow",
     "test/fixtures/coordinated.t2flow",
     "test/fixtures/image_to_tiff_migration_action.t2flow",
     "test/fixtures/linked.t2flow",
@@ -52,7 +58,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://www.taverna.org.uk/"
   s.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.21"
+  s.rubygems_version = "1.8.24"
   s.summary = "Support for interacting with Taverna 2 workflows."
   s.test_files = ["test/run_tests.rb"]
 
