@@ -128,6 +128,14 @@ module T2Flow
             activity.each_element do |node|
               if node.name == "configBean"
                   activity_node = node.child
+
+                  if activity_node.name == "net.sf.taverna.t2.component.ComponentActivityConfigurationBean"
+                    processor.configuration[:component] = {}
+                    processor.configuration[:component][:registry] = activity_node.find_first('./registryBase').content
+                    processor.configuration[:component][:family_name] = activity_node.find_first('./familyName').content
+                    processor.configuration[:component][:name] = activity_node.find_first('./componentName').content
+                    processor.configuration[:component][:version] = activity_node.find_first('./componentVersion').content.to_i
+                  end
                   
                   if node["encoding"] == "dataflow"
                     processor.dataflow_id = activity_node["ref"]

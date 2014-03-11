@@ -48,4 +48,17 @@ class ComponentWorkflowTest < Test::Unit::TestCase
                  @image_migration_wf.processors[0].semantic_annotation.content.gsub(/\s+/, ""),
                  "@image_migration_wf.processors[0].semantic_annotation")
   end
+
+  def test_parses_component_information
+    p = File.expand_path(File.join(__FILE__, "..", "fixtures", "component_using_workflow.t2flow"))
+    wf = T2Flow::Parser.new.parse(File.new(p))
+
+    proc = wf.processors[0]
+    assert_not_nil(proc)
+    assert_not_nil(proc.configuration[:component])
+    assert_equal('http://www.myexperiment.org', proc.configuration[:component][:registry])
+    assert_equal('SCAPE Image Characterisation Component', proc.configuration[:component][:family_name])
+    assert_equal('Extract PNG dimensions', proc.configuration[:component][:name])
+    assert_equal(2, proc.configuration[:component][:version])
+  end
 end
