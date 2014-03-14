@@ -1,5 +1,9 @@
 = Changes log for the T2Flow Ruby Gem
 
+== Version 0.5.1
+
+* Added some missing processor colours.
+
 == Version 0.5.0
 
 * Split out model classes into different files.

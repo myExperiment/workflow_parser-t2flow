@@ -20,43 +20,44 @@ module T2Flow
   #   `dot -Tpng -o"path/to/the/output/image" #{out_file.path}`
   class Dot
 
-    @@processor_colours = {
-      'apiconsumer' => '#98fb98',
-      'beanshell' => '#deb887',
-      'biomart' => '#d1eeee',
-      'localworker' => '#d15fee',
-      'biomobywsdl' => '#ffb90f',
-      'biomoby' => '#ffb90f',
-      'biomobyobject' => '#ffd700',
-      'biomobyparser' => '#ffffff',
-      'inferno' => 'violetred1',
-      'notification' => 'mediumorchid2',
-      'rdfgenerator' => 'purple',
-      'rserv' => 'lightgoldenrodyellow',
-      'seqhound' => '#836fff',
-      'soaplabwsdl' => '#fafad2',
-      'soaplab' => '#fafad2',
-      'stringconstant' => '#b0c4de',
-      'talisman' => 'plum2',
-      'bsf' => 'burlywood2',
-      'abstractprocessor' => 'lightgoldenrodyellow',
-      'xmlsplitter' => '#ab92ea',
-      'rshell' => '#648faa',
-      'arbitrarywsdl' => 'darkolivegreen3',
-      'wsdl' => '#a2cd5a',
-      'workflow' => 'crimson',
-      'rest' => '#7aafff',
-      'xpath' => '#e6ff5e',
-      'externaltool' => '#f28c55',
-      'spreadsheet' => '#40e0d0',
-      'dataflow' => '#ffc0cb',
-      'rshell' => '#648faa',
+    PROCESSOR_COLOURS = {
+        :apiconsumer =>  "#98fb98", #palegreen
+        :beanshell =>  "#deb887", #burlywood2
+        :biomart =>  "#d1eeee", #lightcyan2
+        :localworker =>  "#d15fee",  #mediumorchid2
+        :biomobywsdl =>  "#ffb90f", #darkgoldenrod1
+        :biomoby =>  "#ffb90f",  #darkgoldenrod1
+        :biomobyobject =>  "#ffd700",  #gold
+        :biomobyparser =>  "#ffffff",  #white
+        :inferno =>  "violetred1",
+        :notification =>  "mediumorchid2",
+        :rdfgenerator =>  "purple",
+        :rserv =>  "lightgoldenrodyellow",
+        :seqhound =>  "#836fff",
+        :soaplabwsdl =>  "#fafad2",
+        :soaplab =>  "#fafad2",
+        :stringconstant =>  "#b0c4de",
+        :talisman =>  "plum2",
+        :bsf =>  "burlywood2",
+        :abstractprocessor =>  "lightgoldenrodyellow",
+        :xmlsplitter =>  "#ab92ea",
+        :rshell =>  "#648faa",
+        :arbitrarywsdl =>  "darkolivegreen3",
+        :wsdl =>  "#a2cd5a",
+        :workflow =>  "crimson",
+        :rest =>  "#7aafff",
+        :xpath =>  "#e6ff5e",
+        :externaltool =>  "#f28c55",
+        :spreadsheet =>  "#40e0d0",
+        :dataflow =>  "#ffc0cb",
+        :interaction =>  "#6aeb9f",
+        :component =>  "#e693d2"
     }
+
+    FILL_COLOURS = %w{white aliceblue antiquewhite beige}
     
-    @@fill_colours = %w{white aliceblue antiquewhite beige}
-    
-    @@ranksep = '0.22'
-    @@nodesep = '0.05'
+    RANK_SEP = '0.22'
+    NODE_SEP = '0.05'
     
     # Creates a new dot object for interaction.
     def initialize
@@ -78,8 +79,8 @@ module T2Flow
       stream.puts '  style=""'
       stream.puts '  labeljust="left"'
       stream.puts '  clusterrank="local"'
-      stream.puts "  ranksep=\"#@@ranksep\""
-      stream.puts "  nodesep=\"#@@nodesep\""
+      stream.puts "  ranksep=\"#RANK_SEP\""
+      stream.puts "  nodesep=\"#NODE_SEP\""
       stream.puts ' ]'
       stream.puts
       stream.puts ' node ['
@@ -114,7 +115,7 @@ module T2Flow
         stream.puts ' fontsize="10"'
         stream.puts ' fontcolor="black"'
         stream.puts ' clusterrank="local"'
-        stream.puts " fillcolor=\"#{@@fill_colours[depth % @@fill_colours.length]}\""
+        stream.puts " fillcolor=\"#{FILL_COLOURS[depth % FILL_COLOURS.length]}\""
         stream.puts ' style="filled"'
       end
       dataflow.processors.each {|processor| write_processor(stream, processor, prefix, depth)}
@@ -208,7 +209,6 @@ module T2Flow
       else 
         processor = dataflow.processors.select{|p| p.name == link.source.split(':')[0]}[0]
         if "#{processor.type}" == "workflow"
-          df = @t2flow_model.dataflow(processor.dataflow_id)
           stream.write " \"#{prefix}#{processor.name}WORKFLOWINTERNALSINK_#{link.source.split(':')[1]}\""
         else
           stream.write " \"#{prefix}#{processor.name}\""
@@ -220,7 +220,6 @@ module T2Flow
       else 
         processor = dataflow.processors.select{|p| p.name == link.sink.split(':')[0]}[0]
         if "#{processor.type}" == "workflow"
-          df = @t2flow_model.dataflow(processor.dataflow_id)
           stream.write "\"#{prefix}#{processor.name}WORKFLOWINTERNALSOURCE_#{link.sink.split(':')[1]}\""
         else
           stream.write "\"#{prefix}#{processor.name}\""
@@ -248,7 +247,7 @@ module T2Flow
     end
     
     def get_colour(processor_name) # :nodoc:
-      colour = @@processor_colours[processor_name]
+      colour = PROCESSOR_COLOURS[processor_name.to_sym]
       if colour
         colour
       else 
@@ -258,7 +257,7 @@ module T2Flow
     
     # Returns true if the given name is a processor; false otherwise
     def Dot.is_processor?(processor_name)
-      true if @@processor_colours[processor_name]
+      true if get_colour(processor_name)
     end
     
   end
