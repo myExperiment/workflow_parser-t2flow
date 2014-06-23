@@ -1,4 +1,4 @@
-= Taverna[http://taverna.sourceforge.net] 2 Interaction Gem
+= Taverna[http://taverna.sourceforge.net] 2 parser Gem
 
 Authors::       Finn Bacall, Robert Haines, Mannie Tagarira, David Withers
 Contact::       mailto:support@mygrid.org.uk
@@ -8,7 +8,7 @@ Copyright::     (c) 2008-2013, University of Manchester, UK
 
 == Synopsis
 
-This is a Ruby library to support the interaction with
+This is a Ruby library to support parsing
 Taverna[http://taverna.sourceforge.net] version 2 workflows (T2Flows). This
 relies on the functionality provided by the libxml-ruby library.  To be able
 to utilise this gem to its full potential, you will need to have the following
