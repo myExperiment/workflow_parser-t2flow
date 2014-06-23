@@ -29,7 +29,7 @@ DataflowAnnotations, however, allow for multiple titles, authors, and
 descriptions, as opposed to the single value attributes held for Scufls.
 
 == Installation
-To install the Taverna 2 gem[https://rubygems.org/gems/taverna-t2flow], type into your command prompt:
+To install the Taverna 2 gem taverna-t2flow[https://rubygems.org/gems/taverna-t2flow], type into your command prompt:
   [sudo] gem install taverna-t2flow
 
 == Usage
