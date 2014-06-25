@@ -172,8 +172,8 @@ module T2Flow
       i.close(false)
   
       img = StringIO.new(`dot -Tpng #{i.path}`)
-      img.extend FileUpload
-      img.original_filename = "#{filename}.png"
+      #img.extend FileUpload
+      #img.original_filename = "#{filename}.png"
       img.content_type = "image/png"
 
       img
@@ -190,8 +190,8 @@ module T2Flow
       i.close(false)
 
       svg = StringIO.new(`dot -Tsvg #{i.path}`)
-      svg.extend FileUpload
-      svg.original_filename = "#{filename}.svg"
+      #svg.extend FileUpload
+      #svg.original_filename = "#{filename}.svg"
       svg.content_type = "image/svg+xml"
 
       svg
