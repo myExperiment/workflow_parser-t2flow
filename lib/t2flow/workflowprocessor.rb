@@ -417,7 +417,7 @@ module T2Flow
 
     end
 
-    def extract_rdf_structure(workflow_str)
+    def self.extract_rdf_structure(workflow_str)
       rdf = ''
       if ! File.exist? SCUFL2_WFDESC_JAR
         raise "Can't find #{SCUFL2_WFDESC_JAR}" 
@@ -428,7 +428,7 @@ module T2Flow
         rdf = converter.read
       end
 
-      raise "Error generating wfdesc" if rdf.blank?
+      raise "Error generating wfdesc" if rdf.empty?
 
       rdf
     end
