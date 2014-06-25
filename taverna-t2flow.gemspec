@@ -32,7 +32,12 @@ Gem::Specification.new do |spec|
   ]
 
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rdoc", ">= 3.9.4"
-  spec.add_runtime_dependency "libxml-ruby", ">= 1.1.4"
+  spec.add_development_dependency "coveralls"
+  #spec.add_development_dependency "rdoc", "~> 3.9.4"
+  spec.add_development_dependency "minitest", "~> 5.3"
+  spec.add_runtime_dependency "mime-types", "~> 2.3"
+  spec.add_runtime_dependency "libxml-ruby", "~> 2.7.0"
+  spec.add_runtime_dependency "rdf-turtle", "~> 1.1.4"
+  #spec.add_runtime_dependency "rdf-n3", "~> 1.1.1"
 end
 
