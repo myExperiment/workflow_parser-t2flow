@@ -7,7 +7,7 @@ require 't2flow/version'
 Gem::Specification.new do |spec|
   spec.name = "taverna-t2flow"
   spec.version = T2Flow::VERSION
-  spec.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira", "Don Cruickshank"]
+  spec.authors = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira", "Don Cruickshank", "Stian Soiland-Reyes"]
   spec.email = ["support@mygrid.org.uk"]
 
   spec.summary = "Parse Taverna 2 workflows."
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   An example use would be the diagram generation for the model representing
   Taverna 2 workflows, as used in myExperiment.}
 
-  spec.homepage = "http://www.taverna.org.uk/"
+  spec.homepage = "https://github.com/myExperiment/taverna-t2flow-parser"
   spec.license = "LGPL-2.1+"
   spec.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
 #  spec.rubygems_version = "2.2.2"
