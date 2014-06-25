@@ -21,7 +21,9 @@ T2FLOW_GEM_VERSION = T2Flow::VERSION
 
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/run_tests.rb']
+  t.pattern = 'test/test_*.rb'
+  t.verbose = true
+  t.warning = true
 end
 
 RDoc::Task.new do |r|
