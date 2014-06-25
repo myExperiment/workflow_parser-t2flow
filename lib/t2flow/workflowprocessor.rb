@@ -13,8 +13,12 @@ require 'rdf/turtle'
 require 'file_upload'
 
 module WorkflowProcessors
+  class Interface
+  end
+end
 
-  class Taverna2 < Interface
+module T2Flow  
+  class WorkflowProcessor
     # Register Taverna 2 MIME Types
     Mime::Type.register "application/vnd.taverna.t2flow+xml", :t2flow
 
