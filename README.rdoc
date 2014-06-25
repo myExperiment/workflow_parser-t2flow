@@ -1,6 +1,6 @@
 = Taverna[http://taverna.sourceforge.net] 2 parser Gem
 
-Authors::       Finn Bacall, Robert Haines, Mannie Tagarira, David Withers
+Authors::       Finn Bacall, Robert Haines, Mannie Tagarira, David Withers, Stian Soiland-Reyes, Don Cruickshank
 Contact::       mailto:support@mygrid.org.uk
 URL::           http://www.taverna.org.uk/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
@@ -16,6 +16,7 @@ relies on the functionality provided by the libxml-ruby library.  To be able
 to utilise this gem to its full potential, you will need to have the following
 installed on your system.
 - GraphViz[http://www.graphviz.org/Download.php] (a graph visualization package)
+- Java[http://java.com/en/] or OpenJDK[http://openjdk.java.net/]
 
 == The T2Flow Model Implementation
 
@@ -54,7 +55,7 @@ the workflow by invoking the different methods and attributes.
   bar.INVOKED
 ... where INVOKED is the method or attribute required.
 
-You can also interact with remote workflows.
+You can also parse remote workflows.
   require "open-uri"
   
   foo = Uri.parse("xxxx://uri_to_workflow").read
@@ -76,7 +77,21 @@ try typing into your command prompt:
 or
   % dot -h
 
+== wfdesc
+
+To convert a t2flow to a wfdesc[http://purl.org/wf4ever/model#wfdesc] graph (in
+RDF Turtle format):
+
+    require 't2flow/workflowprocessor'
+   
+    open("workflow.t2flow") do |file|
+      wfdesc = T2Flow::WorkflowProcessor.extract_rdf_structure(file.read)
+      puts wfdesc
+    end
+
+
 == References
 
 [1] http://taverna.sourceforge.net
 [2] http://www.graphviz.org
+[3] http://purl.org/wf4ever/model#wfdesc
