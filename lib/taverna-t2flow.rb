@@ -10,3 +10,4 @@
 require 't2flow/model'
 require 't2flow/parser'
 require 't2flow/dot'
+require 't2flow/workflowprocessor'
