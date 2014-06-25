@@ -31,7 +31,7 @@ class WfdescTest < MiniTest::Test
 
   def test_wfdesc
     wfdesc = T2Flow::WorkflowProcessor.extract_rdf_structure(@wf)
-    puts wfdesc
+    #puts wfdesc
     graph = RDF::Graph.new
     RDF::Turtle::Reader.new(StringIO.new(wfdesc)) do |reader|
       reader.each_statement do |statement|
