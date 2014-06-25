@@ -17,19 +17,20 @@ require 'jeweler'
 
 task :default => [:test]
 
-T2FLOW_GEM_VERSION = "0.5.1"
+T2FLOW_GEM_VERSION = "0.6.0"
 
 Jeweler::Tasks.new do |s|
   s.name             = "taverna-t2flow"
   s.version          = T2FLOW_GEM_VERSION
-  s.authors          = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira"]
+  s.authors          = ["Finn Bacall", "Robert Haines", "David Withers", "Mannie Tagarira", "Don Cruickshank"]
   s.email            = ["support@mygrid.org.uk"]
   s.homepage         = "http://www.taverna.org.uk/"
+  s.license          = "BSD-3-Clause"
   s.platform         = Gem::Platform::RUBY
-  s.summary          = "Support for interacting with Taverna 2 workflows."
-  s.description      = "This a gem developed by myGrid for the purpose of " +
-    "interacting with Taverna 2 workflows. An example use would be the " +
-    "image genaration for the model representing Taverna 2 workflows as " +
+  s.summary          = "Parse Taverna 2 workflows."
+  s.description      = "This gem enables parsing of Taverna 2 workflows (.t2flow). "+
+    " An example use would be the " +
+    "diagram generation for the model representing Taverna 2 workflows, as " +
     "used in myExperiment."
   s.require_path     = "lib"
   s.test_file        = "test/run_tests.rb"
