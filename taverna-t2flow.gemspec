@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   #spec.add_development_dependency "rdoc", "~> 3.9"
   spec.add_development_dependency "minitest", "~> 5.3"
   spec.add_development_dependency "rubocop", "~> 0.24"
-  spec.add_runtime_dependency "mime-types", "~> 2.3"
+#  spec.add_runtime_dependency "mime-types", "~> 2.3"
   spec.add_runtime_dependency "libxml-ruby", "~> 2.6"
   spec.add_runtime_dependency "rdf-turtle", "~> 1.1"
   #spec.add_runtime_dependency "rdf-n3", "~> 1.1"
