@@ -7,6 +7,8 @@ require 'libxml'
 require 'rdf'
 #require 'rdf/n3'
 require 'rdf/turtle'
+require 'tempfile'
+require 'stringio'
 
 
 module WorkflowProcessors
