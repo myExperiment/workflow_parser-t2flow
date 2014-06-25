@@ -16,6 +16,7 @@ end
 
 module T2Flow  
   GEM_ROOT = File.expand_path(File.join(__FILE__, "..", "..", ".."))
+  SCUFL2_WFDESC_JAR = File.expand_path(File.join(GEM_ROOT, "bin", "scufl2-wfdesc-0.3.7-standalone.jar"))
 
   class WorkflowProcessor
     # Register Taverna 2 MIME Types
@@ -418,7 +419,6 @@ module T2Flow
 
     def extract_rdf_structure(workflow_str)
       rdf = ''
-      SCUFL2_WFDESC_JAR = File.expand_path(File.join(GEM_ROOT, "bin", "scufl2-wfdesc-0.3.7-standalone.jar"))
       if ! File.exist? SCUFL2_WFDESC_JAR
         raise "Can't find #{SCUFL2_WFDESC_JAR}" 
       end
