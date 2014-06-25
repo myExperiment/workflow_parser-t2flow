@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     taverna-t2flow (0.6.0.pre.SNAPSHOT)
-      libxml-ruby (~> 2.7.0)
+      libxml-ruby (~> 2.6.0)
       mime-types (~> 2.3)
       rdf-turtle (~> 1.1.4)
 
@@ -24,7 +24,7 @@ GEM
     haml (4.0.5)
       tilt
     json (1.8.1)
-    libxml-ruby (2.7.0)
+    libxml-ruby (2.6.0)
     mime-types (2.3)
     minitest (5.3.5)
     multi_json (1.10.1)
