@@ -7,7 +7,9 @@
 #          David Withers
 #          Mannie Tagarira
 
-class StarterPackWorkflowsTest < Test::Unit::TestCase
+require 'test_helper'
+
+class StarterPackWorkflowsTest < MiniTest::Test
     
   include TestHelper
 

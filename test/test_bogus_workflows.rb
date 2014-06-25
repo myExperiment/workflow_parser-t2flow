@@ -6,8 +6,10 @@
 #          Robert Haines
 #          David Withers
 #          Mannie Tagarira
+#
+require 'test_helper'
 
-class BogusWorkflowTest < Test::Unit::TestCase
+class BogusWorkflowTest < MiniTest::Test
   
   include TestHelper
   

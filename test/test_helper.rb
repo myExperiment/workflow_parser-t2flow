@@ -7,6 +7,10 @@
 #          David Withers
 #          Mannie Tagarira
 
+require 'minitest/autorun'
+require 'coveralls'
+Coveralls.wear!
+
 module TestHelper
   
   def generic_model_test(model)

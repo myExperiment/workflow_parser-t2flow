@@ -7,7 +7,9 @@
 #          David Withers
 #          Mannie Tagarira
 
-class ComponentWorkflowTest < Test::Unit::TestCase
+require 'test_helper'
+
+class ComponentWorkflowTest < MiniTest::Test
   
   include TestHelper
   
@@ -27,21 +29,21 @@ class ComponentWorkflowTest < Test::Unit::TestCase
   end
 
   def test_semantic_annotations
-    assert_not_nil(@image_migration_wf.sources[0].semantic_annotation)
+    refute_nil(@image_migration_wf.sources[0].semantic_annotation)
     assert_equal(@image_migration_wf.sources[0], @image_migration_wf.sources[0].semantic_annotation.subject)
     assert_equal("text/rdf+n3", @image_migration_wf.sources[0].semantic_annotation.type)
     assert_equal("[]<http://scape-project.eu/pc/vocab/profiles#hasPortType><http://scape-project.eu/pc/vocab/profiles#FromURIPort>.",
                  @image_migration_wf.sources[0].semantic_annotation.content.gsub(/\s+/, ""),
                  "@image_migration_wf.sources[0].semantic_annotation")
 
-    assert_not_nil(@image_migration_wf.sources[1].semantic_annotation)
+    refute_nil(@image_migration_wf.sources[1].semantic_annotation)
     assert_equal(@image_migration_wf.sources[1], @image_migration_wf.sources[1].semantic_annotation.subject)
     assert_equal("text/rdf+n3", @image_migration_wf.sources[1].semantic_annotation.type)
     assert_equal("[]<http://scape-project.eu/pc/vocab/profiles#hasPortType><http://scape-project.eu/pc/vocab/profiles#ToURIPort>.",
                  @image_migration_wf.sources[1].semantic_annotation.content.gsub(/\s+/, ""),
                  "@image_migration_wf.sources[1].semantic_annotation")
 
-    assert_not_nil(@image_migration_wf.processors[0].semantic_annotation)
+    refute_nil(@image_migration_wf.processors[0].semantic_annotation)
     assert_equal(@image_migration_wf.processors[0], @image_migration_wf.processors[0].semantic_annotation.subject)
     assert_equal("text/rdf+n3", @image_migration_wf.processors[0].semantic_annotation.type)
     assert_equal("[]<http://scape-project.eu/pc/vocab/profiles#hasDependency><http://scape-project.eu/pc/vocab/profiles#imagemagick-image2tiff>.",
@@ -54,8 +56,8 @@ class ComponentWorkflowTest < Test::Unit::TestCase
     wf = T2Flow::Parser.new.parse(File.new(p))
 
     proc = wf.processors[0]
-    assert_not_nil(proc)
-    assert_not_nil(proc.configuration[:component])
+    refute_nil(proc)
+    refute_nil(proc.configuration[:component])
     assert_equal('http://www.myexperiment.org', proc.configuration[:component][:registry])
     assert_equal('SCAPE Image Characterisation Component', proc.configuration[:component][:family_name])
     assert_equal('Extract PNG dimensions', proc.configuration[:component][:name])
