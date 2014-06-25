@@ -1,4 +1,5 @@
-require 'test/unit'
+#require 'test/unit'
+require 'minitest/autorun'
 require 'taverna-t2flow'
 
 require 'test_helper.rb'
