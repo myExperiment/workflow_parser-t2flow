@@ -8,9 +8,9 @@ require 't2flow/parser'
 require 't2flow/dot'
 require 'libxml'
 require 'rdf'
-require 'rdf/n3'
+#require 'rdf/n3'
 require 'rdf/turtle'
-require 'file_upload'
+
 
 module WorkflowProcessors
   class Interface
@@ -20,7 +20,9 @@ end
 module T2Flow  
   class WorkflowProcessor
     # Register Taverna 2 MIME Types
-    Mime::Type.register "application/vnd.taverna.t2flow+xml", :t2flow
+    # TODO: Is this possible without a dependency on actionpack?
+    ##require 'action_controller/mime_type'
+    ##Mime::Type.register "application/vnd.taverna.t2flow+xml", :t2flow
 
     # Begin Class Methods
     
