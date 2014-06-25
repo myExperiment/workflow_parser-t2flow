@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    taverna-t2flow (0.5.1)
+    taverna-t2flow (0.6.0)
       libxml-ruby (>= 1.1.4)
+      taverna-t2flow
 
 GEM
   remote: https://rubygems.org/
