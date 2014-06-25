@@ -1,1 +1,5 @@
 language: ruby
+before-install:
+  - sudo apt-get update
+  - sudo apt-get dist-upgrade
+  - sudo apt-get install openjdk7 graphviz
