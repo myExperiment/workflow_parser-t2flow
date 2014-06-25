@@ -16,9 +16,9 @@ Gem::Specification.new do |spec|
   Taverna 2 workflows, as used in myExperiment.}
 
   spec.homepage = "http://www.taverna.org.uk/"
-  spec.licenses = ["BSD-3-Clause"]
+  spec.license = "LGPL-2.1+"
   spec.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
-  spec.rubygems_version = "2.2.2"
+#  spec.rubygems_version = "2.2.2"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
