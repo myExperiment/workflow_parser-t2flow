@@ -6,6 +6,8 @@ URL::           http://www.taverna.org.uk/
 Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
 Copyright::     (c) 2008-2013, University of Manchester, UK
 
+{<img src="https://travis-ci.org/myExperiment/taverna-t2flow-parser.svg" alt="Build Status" />}[https://travis-ci.org/myExperiment/taverna-t2flow-parser]
+
 == Synopsis
 
 This is a Ruby library to support parsing
