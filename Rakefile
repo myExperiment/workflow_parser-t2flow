@@ -14,6 +14,7 @@ require 'rake/tasklib'
 require 'rake/testtask'
 require 'rdoc/task'
 require 't2flow/version'
+require 'rubocop/rake_task'
 
 task :default => [:test]
 
@@ -23,7 +24,7 @@ Rake::TestTask.new do |t|
   t.libs << "test"
   t.pattern = 'test/test_*.rb'
   t.verbose = true
-  t.warning = true
+#  t.warning = true
 end
 
 RDoc::Task.new do |r|
@@ -34,3 +35,6 @@ RDoc::Task.new do |r|
   r.options << "-N"
   r.options << "--tab-width=2"
 end
+
+RuboCop::RakeTask.new
+

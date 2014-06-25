@@ -19,11 +19,11 @@ Gem::Specification.new do |spec|
   spec.licenses = ["BSD-3-Clause"]
   spec.rdoc_options = ["-N", "--tab-width=2", "--main=README.rdoc"]
   spec.rubygems_version = "2.2.2"
-  spec.test_files = ["test/run_tests.rb"]
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+
   spec.require_paths = ["lib"]
   spec.extra_rdoc_files = [
     "CHANGES.rdoc",
@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls"
   #spec.add_development_dependency "rdoc", "~> 3.9.4"
   spec.add_development_dependency "minitest", "~> 5.3"
+  spec.add_development_dependency "rubocop", "~> 0.24.0"
   spec.add_runtime_dependency "mime-types", "~> 2.3"
   spec.add_runtime_dependency "libxml-ruby", "~> 2.7.0"
   spec.add_runtime_dependency "rdf-turtle", "~> 1.1.4"
