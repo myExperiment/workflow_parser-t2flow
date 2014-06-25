@@ -7,6 +7,7 @@ Licence::       LGPL 3 (See LICENCE or http://www.gnu.org/licenses/lgpl.html)
 Copyright::     (c) 2008-2013, University of Manchester, UK
 
 {<img src="https://travis-ci.org/myExperiment/taverna-t2flow-parser.svg" alt="Build Status" />}[https://travis-ci.org/myExperiment/taverna-t2flow-parser]
+{<img src="https://coveralls.io/repos/myExperiment/taverna-t2flow-parser/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/myExperiment/taverna-t2flow-parser?branch=master] 
 
 == Synopsis
 
