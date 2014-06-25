@@ -15,7 +15,8 @@ module WorkflowProcessors
 end
 
 module T2Flow  
-  GEM_ROOT = File.expand_path File.join(File.dirname(__FILE__), "../../../")
+  GEM_ROOT = File.expand_path(File.join(__FILE__, "..", "..", ".."))
+
   class WorkflowProcessor
     # Register Taverna 2 MIME Types
     # TODO: Is this possible without a dependency on actionpack?
@@ -417,7 +418,11 @@ module T2Flow
 
     def extract_rdf_structure(workflow_str)
       rdf = ''
-      IO.popen("java -jar #{GEM_ROOT}/bin/scufl2-wfdesc-0.3.7-standalone.jar", 'r+') do |converter|
+      SCUFL2_WFDESC_JAR = File.expand_path(File.join(GEM_ROOT, "bin", "scufl2-wfdesc-0.3.7-standalone.jar"))
+      if ! File.exist? SCUFL2_WFDESC_JAR
+        raise "Can't find #{SCUFL2_WFDESC_JAR}" 
+      end
+      IO.popen("java -jar #{SCUFL2_WFDESC_JAR}", 'r+') do |converter|
         converter.puts(workflow_str)
         converter.close_write
         rdf = converter.read
