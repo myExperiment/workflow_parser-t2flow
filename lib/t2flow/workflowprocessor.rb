@@ -1,7 +1,4 @@
-# myExperiment: lib/workflow_processors/taverna2.rb
-#
 # Copyright (c) 2008 University of Manchester and the University of Southampton.
-# See license.txt for details.
 
 require 't2flow/model'
 require 't2flow/parser'
@@ -18,6 +15,7 @@ module WorkflowProcessors
 end
 
 module T2Flow  
+  GEM_ROOT = File.expand_path File.join(File.dirname(__FILE__), "../../../")
   class WorkflowProcessor
     # Register Taverna 2 MIME Types
     # TODO: Is this possible without a dependency on actionpack?
@@ -417,10 +415,10 @@ module T2Flow
 
     end
 
-    def extract_rdf_structure(workflow)
+    def extract_rdf_structure(workflow_str)
       rdf = ''
-      IO.popen("java -jar #{RAILS_ROOT}/vendor/java/scufl2-wfdesc/scufl2-wfdesc-0.3.7-standalone.jar", 'r+') do |converter|
-        converter.puts(workflow.content_blob.data)
+      IO.popen("java -jar #{GEM_ROOT}/bin/scufl2-wfdesc-0.3.7-standalone.jar", 'r+') do |converter|
+        converter.puts(workflow_str)
         converter.close_write
         rdf = converter.read
       end
