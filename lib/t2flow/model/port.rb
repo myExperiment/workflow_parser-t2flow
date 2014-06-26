@@ -3,7 +3,7 @@ module T2Flow
     attr_accessor :name, :descriptions, :example_values, :semantic_annotation
 
     def id
-      return "_:" + hash
+      return "_:port#{hash}"
     end
 
     def to_json
