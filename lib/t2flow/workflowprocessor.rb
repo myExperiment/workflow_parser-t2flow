@@ -420,10 +420,18 @@ module T2Flow
 
     end
 
-    def as_json
-      { "@context" =>"https://w3id.org/ro/roterms/context",
-        "@type" => "Workflow"
-      }
+    def to_json
+      unless @t2flow_model.nil?
+        { "@context" =>"https://w3id.org/ro/roterms/context",
+          "@type" => "Workflow",
+            "hasInput" => @t2flow_model.sources.map do |port|
+              port.to_json
+            end,
+          "hasOutput" => @t2flow_model.sinks.map do |port|
+              port.to_json
+            end
+        }
+      end
     end
 
     def self.extract_rdf_structure(workflow_str)
