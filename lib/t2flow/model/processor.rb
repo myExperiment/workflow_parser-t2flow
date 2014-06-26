@@ -33,38 +33,38 @@ module T2Flow
     # For processors of type "arbitrarywsdl", this is the URI to the location
     # of the wsdl file.
     def wsdl
-      @configuration[:wsdl]
+      @configuration["wsdlURI"]
     end
 
     # For processors of type "arbitrarywsdl", this is the operation invoked.
     def wsdl_operation
-      @configuration[:wsdl_operation]
+      @configuration["wsdlOperationName"]
     end
 
     # For soaplab and biomoby services, this is the endpoint URI.
     def endpoint
-      @configuration[:endpoint]
+      @configuration["serviceURI"]
     end
 
     # Authority name for the biomoby service.
     def biomoby_authority_name
-      @configuration[:biomoby_authority_name]
+      @configuration["biomoby_authority_name"]
     end
 
     # Service name for the biomoby service. This is not necessarily the same
     # as the processors name.
     def biomoby_service_name
-      @configuration[:biomoby_service_name]
+      @configuration["biomoby_service_name"]
     end
 
     # Category for the biomoby service.
     def biomoby_category
-      @configuration[:biomoby_category]
+      @configuration["biomoby_category"]
     end
 
     # Value for string constants
     def value
-      @configuration[:value]
+      @configuration["value"]
     end
 
     attr_accessor :semantic_annotation
@@ -75,6 +75,32 @@ module T2Flow
     def initialize
       @descriptions = []
       @configuration = {}
+      @inputs = []
+      @outputs = []
+    end
+
+    def to_json
+      json = {
+        "@type" => type,
+        "label" => name,
+        "comment" => type,
+        "description" => description,
+        "script" => script,
+        "hasInput" => inputs.map do |port|
+          # TODO: Keep these around for mathcing ids with datalinks
+          p = Source.new
+          p.name = port
+          p.to_json
+        end,
+        "hasOutput" => outputs.map do |port|
+          # TODO: Keep these around for mathcing ids with datalinks
+          p = Sink.new
+          p.name = port
+          p.to_json
+        end,
+
+      }.merge(configuration).delete_if{|k,v| v.nil?}
+      return json
     end
 
   end
