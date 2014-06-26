@@ -44,6 +44,35 @@ module T2Flow
     def beanshells
       @processors.select { |x| x.type == "beanshell" }
     end
+
+    def to_json
+      { "@id" => "http://ns.taverna.org.uk/2010/workflow/" + dataflow_id + "/",
+        "@type" => "Workflow",
+        "label" => name,
+        "title" => annotations.titles.first,
+        "description" => annotations.descriptions.first,
+
+        # Awkward this one, as from Taverna 2 it is usually a string
+        # where multiple authors are listed by the user in
+        # free text, and thus could be separated with comma, newlines
+        # or any other character.  Unlike dct:creator, prov:wasAttributedTo
+        # and pav:authoredBy, dc:creator is loose enough to allow
+        # such literals. We still have to take the 'first'
+        # as multiple entries in the t2flow just indicate multiple
+        # edits to the Creator field
+        "http://purl.org/dc/elements/1.0/creator" => annotations.authors.first,
+
+        "hasInput" => sources.map do |port|
+            port.to_json
+          end,
+        "hasOutput" => sinks.map do |port|
+            port.to_json
+          end,
+        "hasSubProcess" => processors.map do |processor|
+            processor.to_json
+          end
+      }.delete_if{|k,v| v.nil?}
+    end
   end
 
 

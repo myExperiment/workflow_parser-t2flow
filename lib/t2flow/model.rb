@@ -77,7 +77,7 @@ module T2Flow # :nodoc:
       return links.flatten
     end
 
-    # Retrieve the annotations specific to the workflow.  This does not return 
+    # Retrieve the annotations specific to the workflow.  This does not return
     # any annotations from workflows encapsulated within the main workflow.
     def annotations
       self.main.annotations
@@ -138,7 +138,7 @@ module T2Flow # :nodoc:
       self.main.dataflow_id
     end
 
-    # For the given dataflow, return the beanshells and/or services which 
+    # For the given dataflow, return the beanshells and/or services which
     # have direct links to or from the given processor.
     # If no dataflow is specified, the top-level dataflow is used.
     # This does a recursive search in nested workflows.
@@ -187,5 +187,11 @@ module T2Flow # :nodoc:
 
       return proc_links
     end
+
+    def to_json
+      { "@context" => "https://w3id.org/ro/roterms/context"
+      }.merge(main.to_json)
+    end
+
   end
 end
