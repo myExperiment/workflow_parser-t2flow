@@ -60,7 +60,7 @@ module T2Flow
         # such literals. We still have to take the 'first'
         # as multiple entries in the t2flow just indicate multiple
         # edits to the Creator field
-        "http://purl.org/dc/elements/1.0/creator" => annotations.authors.first,
+        "http://purl.org/dc/elements/1.1/creator" => annotations.authors.first,
 
         "hasInput" => sources.map do |port|
             port.to_json
