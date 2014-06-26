@@ -16,7 +16,7 @@ module WorkflowProcessors
   end
 end
 
-module T2Flow  
+module T2Flow
   GEM_ROOT = File.expand_path(File.join(__FILE__, "..", "..", ".."))
   SCUFL2_WFDESC_JAR = File.expand_path(File.join(GEM_ROOT, "bin", "scufl2-wfdesc-0.3.7-standalone.jar"))
 
@@ -27,21 +27,21 @@ module T2Flow
     ##Mime::Type.register "application/vnd.taverna.t2flow+xml", :t2flow
 
     # Begin Class Methods
-    
-    # These: 
+
+    # These:
     # - provide information about the Workflow Type supported by this processor,
     # - provide information about the processor's capabilites, and
     # - provide any general functionality.
-    
+
     # MUST be unique across all processors
-    def self.display_name 
+    def self.display_name
       "Taverna 2"
     end
-    
+
     def self.display_data_format
       "T2FLOW"
     end
-    
+
     def self.mime_type
       "application/vnd.taverna.t2flow+xml"
     end
@@ -55,11 +55,11 @@ module T2Flow
     def self.default_file_extension
       "t2flow"
     end
-    
+
     def self.can_determine_type_from_file?
       true
     end
-    
+
     def self.recognised?(file)
       begin
         file.rewind
@@ -70,7 +70,7 @@ module T2Flow
         return false
       end
     end
-    
+
     def self.can_infer_metadata?
       true
     end
@@ -82,32 +82,33 @@ module T2Flow
     def self.can_infer_description?
       true
     end
-    
+
     def self.can_generate_preview_image?
       true
     end
-    
+
     def self.can_generate_preview_svg?
       true
     end
-    
+
     # End Class Methods
-    
-    
+
+
     # Begin Object Initializer
 
     def initialize(workflow_definition)
-      super(workflow_definition)
-      @t2flow_model = T2Flow::Parser.new.parse(workflow_definition)      
+      #super(workflow_definition)
+      @workflow_definition = workflow_definition
+      @t2flow_model = T2Flow::Parser.new.parse(workflow_definition)
     end
 
     # End Object Initializer
-    
+
 
     # Begin Instance Methods
-    
+
     # These provide more specific functionality for a given workflow definition, such as parsing for metadata and image generation.
-    
+
     # *** NEW ***
     def get_name
       return nil if @t2flow_model.nil?
@@ -121,7 +122,7 @@ module T2Flow
         @t2flow_model.annotations.name
       end
     end
-    
+
     def get_title
       titles = self.get_titles
       if titles
@@ -130,18 +131,18 @@ module T2Flow
         return self.get_name
       end
     end
-    
+
     # *** NEW ***
     def get_titles
       return nil if @t2flow_model.nil?
       return @t2flow_model.annotations.titles
     end
-    
+
     def get_description
       descriptions = self.get_descriptions
       if descriptions
         desc = ""
-        descriptions.each { |x| 
+        descriptions.each { |x|
           desc << x
           desc << "<hr/>" unless x==descriptions.last
           }
@@ -150,7 +151,7 @@ module T2Flow
         return nil
       end
     end
-    
+
     # *** NEW ***
     def get_descriptions
       return nil if @t2flow_model.nil?
@@ -162,7 +163,7 @@ module T2Flow
       return nil if @t2flow_model.nil?
       return @t2flow_model.annotations.authors
     end
-    
+
     def get_preview_image
       return nil if @t2flow_model.nil? || RUBY_PLATFORM =~ /mswin32/
 
@@ -172,7 +173,7 @@ module T2Flow
       i = Tempfile.new("image")
       T2Flow::Dot.new.write_dot(i, @t2flow_model)
       i.close(false)
-  
+
       img = StringIO.new(`dot -Tpng #{i.path}`)
       #img.extend FileUpload
       #img.original_filename = "#{filename}.png"
@@ -180,7 +181,7 @@ module T2Flow
 
       img
     end
-        
+
     def get_preview_svg
       return nil if @t2flow_model.nil? || RUBY_PLATFORM =~ /mswin32/
 
@@ -202,19 +203,19 @@ module T2Flow
     def get_workflow_model_object
       @t2flow_model
     end
-    
+
     def get_workflow_model_input_ports
       return (@t2flow_model.nil? ? nil : @t2flow_model.sources)
     end
-    
+
     def get_search_terms
       def get_scufl_metadata(model)
         words = StringIO.new
-        
+
         model.annotations.descriptions.each { |desc|
           words << " #{desc}"
         } if model.annotations.descriptions
-        
+
         model.sources.each do |source|
           words << " #{source.name}" if source.name
           source.descriptions.each { |desc|
@@ -241,7 +242,7 @@ module T2Flow
       return "" if @t2flow_model.nil?
       return get_scufl_metadata(@t2flow_model)
     end
-    
+
     def build(name, text = nil, &blk)
       node = XML::Node.new(name)
       node << text if text
@@ -293,7 +294,7 @@ module T2Flow
 
                       if source.example_values
                         source.example_values.each do |source_example_value|
-                         
+
                           source_examples_element << build('example', source_example_value)
                         end
                       end
@@ -325,7 +326,7 @@ module T2Flow
 
                       if sink.example_values
                         sink.example_values.each do |sink_example_value|
-                         
+
                           sink_examples_element << build('example', sink_example_value)
                         end
                       end
@@ -395,7 +396,7 @@ module T2Flow
     def get_components
       get_components_aux(@t2flow_model, @t2flow_model, 'components')
     end
-    
+
     def extract_metadata(workflow)
 
       @t2flow_model.all_processors.each do |processor|
@@ -419,10 +420,16 @@ module T2Flow
 
     end
 
+    def as_json
+      { "@context" =>"https://w3id.org/ro/roterms/context",
+        "@type" => "Workflow"
+      }
+    end
+
     def self.extract_rdf_structure(workflow_str)
       rdf = ''
       if ! File.exist? SCUFL2_WFDESC_JAR
-        raise "Can't find #{SCUFL2_WFDESC_JAR}" 
+        raise "Can't find #{SCUFL2_WFDESC_JAR}"
       end
       IO.popen("java -jar #{SCUFL2_WFDESC_JAR}", 'r+') do |converter|
         converter.puts(workflow_str)
