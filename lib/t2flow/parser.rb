@@ -146,30 +146,30 @@ module T2Flow
                     activity_node.each_element do |value_node|
                       case value_node.name
                         when "wsdl"
-                          processor.configuration[:wsdl] = value_node.content
+                          processor.configuration["wsdlURI"] = value_node.content
                         when "operation"
-                          processor.configuration[:wsdl_operation] = value_node.content
+                          processor.configuration["wsdlOperationName"] = value_node.content
                         when /endpoint/i
-                          processor.configuration[:endpoint] = value_node.content
+                          processor.configuration["serviceURI"] = value_node.content
                         when /servicename/i
-                          processor.configuration[:biomoby_service_name] = value_node.content
+                          processor.configuration["biomoby_service_name"] = value_node.content
                         when /authorityname/i
-                          processor.configuration[:biomoby_authority_name] = value_node.content
+                          processor.configuration["biomoby_authority_name"] = value_node.content
                         when "category"
-                          processor.configuration[:biomoby_category] = value_node.content
+                          processor.configuration["biomoby_category"] = value_node.content
                         when "script"
-                          processor.configuration[:script] = value_node.content
+                          processor.configuration["script"] = value_node.content
                         when "value"
-                          processor.configuration[:value] = value_node.content
+                          processor.configuration["value"] = value_node.content
                         when "presentationOrigin"
-                          processor.configuration[:interaction_page] = value_node.content
+                          processor.configuration["interaction_page"] = value_node.content
                         when "connectionSettings"
                           if processor.type == 'rshell'
-                            processor.configuration[:r_server] = value_node.find_first('./host').content + ":" +
+                            processor.configuration["r_server"] = value_node.find_first('./host').content + ":" +
                                 value_node.find_first('./port').content
                           end
                         when "xpathExpression"
-                          processor.configuration[:xpath_expression] = value_node.content
+                          processor.configuration["xpath_expression"] = value_node.content
                         when "inputs" # ALL ports present in beanshell
                           value_node.each_element do |input|
                             input.each_element do |x|
