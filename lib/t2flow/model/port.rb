@@ -1,16 +1,22 @@
 module T2Flow
   class Port
     attr_accessor :name, :descriptions, :example_values, :semantic_annotation
+
+    def id
+      return "_:" + hash
+    end
+
     def to_json
       json =  {
-          "label" => @name,
+          "@id"  => id,
+          "label" => name,
       }
-      unless @descriptions.nil? 
-        json["description"] = @descriptions.first
+      unless descriptions.nil?
+        json["description"] = descriptions.first
       end
-      unless @example_values.nil?
+      unless example_values.nil?
         json["exampleValue"] = {
-          "chars" => @example_values.first
+          "chars" => example_values.first
         }
       end
       json
