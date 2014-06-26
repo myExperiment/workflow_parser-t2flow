@@ -7,12 +7,11 @@
 #          David Withers
 #          Mannie Tagarira
 
-require 'rubygems'
 require 'libxml'
 require 'cgi'
 
 module T2Flow
-  
+
   class Parser
     # Returns the model for the given t2flow_file.
     # The method accepts objects of classes File, StringIO and String only.
@@ -26,7 +25,7 @@ module T2Flow
         when /^stringio|file$/i
           t2flow.rewind
           document = LibXML::XML::Parser.string(t2flow.read, :options => LibXML::XML::Parser::Options::NOBLANKS).parse
-        else 
+        else
           raise "Error parsing file."
       end
 
@@ -35,13 +34,13 @@ module T2Flow
 
       raise "Doesn't appear to be a workflow!" if root.name != "workflow"
       version = root["version"]
-      
+
       create_model(root, version)
     end
-    
+
     def create_model(element, version) # :nodoc:
       model = Model.new
-      
+
       local_depends = element.find("//localDependencies")
       if local_depends
         local_depends.each do |dependency|
@@ -52,14 +51,14 @@ module T2Flow
         end
         model.dependencies.uniq! if model.dependencies
       end
-    
+
       element.each_element do |dataflow|
         next if dataflow["id"].nil? || dataflow["id"].chomp.strip.empty?
 
         dataflow_obj = Dataflow.new
         dataflow_obj.dataflow_id = dataflow["id"]
         dataflow_obj.role = dataflow["role"]
-        
+
         dataflow.each_element do |elt|
           case elt.name
             when "name"
@@ -78,41 +77,41 @@ module T2Flow
               elt.each_element { |ann| add_annotation(dataflow_obj, ann) }
           end # case elt.name
         end # dataflow.each
-        
+
         model.dataflows << dataflow_obj
       end # element.each
-      
+
       temp = model.processors.select { |x| x.type == "workflow" }
       temp.each do |proc|
         df = model.dataflow(proc.dataflow_id)
         df.annotations.name = proc.name
       end
-      
-      return model   
+
+      return model
     end
-    
+
     def add_source(dataflow, port) # :nodoc:
       return if port.nil? || port.content.chomp.strip.empty?
 
       source = Source.new
-      extract_port_metadata(source, port)            
+      extract_port_metadata(source, port)
       dataflow.sources << source
     end
-    
+
     def add_sink(dataflow, port) # :nodoc:
       return if port.nil? || port.content.chomp.strip.empty?
-      
-      sink = Sink.new      
-      extract_port_metadata(sink, port)      
+
+      sink = Sink.new
+      extract_port_metadata(sink, port)
       dataflow.sinks << sink
     end
-    
+
     def add_processor(dataflow, element) # :nodoc:
       processor = Processor.new
-      
+
       temp_inputs = []
       temp_outputs = []
-      
+
       element.each_element do |elt|
         case elt.name
           when "name"
@@ -136,14 +135,14 @@ module T2Flow
                     processor.configuration[:component][:name] = activity_node.find_first('./componentName').content
                     processor.configuration[:component][:version] = activity_node.find_first('./componentVersion').content.to_i
                   end
-                  
+
                   if node["encoding"] == "dataflow"
                     processor.dataflow_id = activity_node["ref"]
                     processor.type = "workflow"
                   else
                     processor.type = (activity_node.name =~ /martquery/i ?
                         "biomart" : activity_node.name.split(".")[-2])
-                    
+
                     activity_node.each_element do |value_node|
                       case value_node.name
                         when "wsdl"
@@ -175,14 +174,14 @@ module T2Flow
                           value_node.each_element do |input|
                             input.each_element do |x|
                               processor.inputs = [] if processor.inputs.nil?
-                              processor.inputs << x.content if x.name == "name" 
+                              processor.inputs << x.content if x.name == "name"
                             end
                           end
                         when "outputs" # ALL ports present in beanshell
                           value_node.each_element do |output|
                             output.each_element do |x|
                               processor.outputs = [] if processor.outputs.nil?
-                              processor.outputs << x.content if x.name == "name" 
+                              processor.outputs << x.content if x.name == "name"
                             end
                           end
                       end # case value_node.name
@@ -192,15 +191,15 @@ module T2Flow
             end # activity.each
         end # case elt.name
       end # element.each
-      
+
       processor.inputs = temp_inputs if processor.inputs.nil? && !temp_inputs.empty?
       processor.outputs = temp_outputs if processor.outputs.nil? && !temp_outputs.empty?
       dataflow.processors << processor
     end
-    
+
     def add_link(dataflow, link) # :nodoc:
       datalink = Datalink.new
-      
+
       if sink = link.find_first('./t2:sink')
         if processor = sink.find_first('./t2:processor')
           datalink.sink = "#{processor.content}:"
@@ -221,16 +220,16 @@ module T2Flow
 
       dataflow.datalinks << datalink
     end
-    
+
     def add_coordination(dataflow, condition) # :nodoc:
       coordination = Coordination.new
-      
+
       coordination.control = condition["control"]
       coordination.target = condition["target"]
-      
+
       dataflow.coordinations << coordination
     end
-    
+
     def add_annotation(dataflow, annotation) # :nodoc:
       node = LibXML::XML::Parser.string("#{annotation}").parse
       content_node = node.find_first("//annotationBean")
@@ -246,9 +245,9 @@ module T2Flow
           dataflow.annotations.semantic_annotation = parse_semantic_annotation(dataflow, content_node)
         end # case
     end
-    
-    private 
-    
+
+    private
+
     def extract_port_metadata(port, element)
       element.each_element do |elt|
         case elt.name
@@ -285,7 +284,7 @@ module T2Flow
       content = CGI.unescapeHTML(content_node.find_first('./content').content)
       SemanticAnnotation.new(object, type, content)
     end
-    
+
   end
-  
+
 end
