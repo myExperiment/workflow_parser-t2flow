@@ -21,6 +21,7 @@ class JsonTest < MiniTest::Test
 
   WFDESC = RDF::Vocabulary.new("http://purl.org/wf4ever/wfdesc#")
   ROTERMS = RDF::Vocabulary.new("http://purl.org/wf4ever/roterms#")
+  CNT = RDF::Vocabulary.new("http://www.w3.org/2011/content#")
 
   def setup
     @path = File.expand_path(File.join(__FILE__, "..", "fixtures", "image_to_tiff_migration_action.t2flow"))
@@ -29,9 +30,9 @@ class JsonTest < MiniTest::Test
     end
   end
 
-  def test_as_json
+  def test_to_json
     processor = T2Flow::WorkflowProcessor.new(@wf)
-    json = processor.as_json
+    json = processor.to_json
 
     puts json
 
@@ -41,7 +42,7 @@ class JsonTest < MiniTest::Test
     # Parse as JSON-LD
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
     # Output as Turtle for debug
-    graph.dump(:ttl)
+    puts graph.dump(:ttl)
 
 
     # Look up an input port and its example value
@@ -50,7 +51,9 @@ class JsonTest < MiniTest::Test
           RDF.type => WFDESC.Workflow,
           WFDESC.hasInput => {
             RDF::RDFS.label => :inputLabel,
-            ROTERMS.exampleValue => :inputExample
+            ROTERMS.exampleValue => {
+              CNT.chars =>  :inputExample
+            }
           }
        }
     })
@@ -66,4 +69,4 @@ class JsonTest < MiniTest::Test
 
   end
 
-end
+  end
