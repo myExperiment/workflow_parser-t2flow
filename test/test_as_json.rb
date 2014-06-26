@@ -22,6 +22,7 @@ class JsonTest < MiniTest::Test
   WFDESC = RDF::Vocabulary.new("http://purl.org/wf4ever/wfdesc#")
   ROTERMS = RDF::Vocabulary.new("http://purl.org/wf4ever/roterms#")
   CNT = RDF::Vocabulary.new("http://www.w3.org/2011/content#")
+  DC = RDF::Vocabulary.new("http://purl.org/dc/elements/1.1/")
 
   def setup
     @path = File.expand_path(File.join(__FILE__, "..", "fixtures", "image_to_tiff_migration_action.t2flow"))
@@ -45,25 +46,32 @@ class JsonTest < MiniTest::Test
     puts graph.dump(:ttl)
 
 
-    # Look up an input port and its example value
-    input_query = RDF::Query.new({
+    # Attempt to match expected structure
+    query = RDF::Query.new({
        :workflow => {
           RDF.type => WFDESC.Workflow,
+          DC.creator => :creator,
+          RDF::RDFS.label => :wfLabel,
+          RDF::DC.title => :title,
           WFDESC.hasInput => {
             RDF::RDFS.label => :inputLabel,
             ROTERMS.exampleValue => {
-              CNT.chars =>  :inputExample
+              CNT.chars => :inputExample
             }
+          },
+          WFDESC.hasSubProcess => {
+              RDF::RDFS.label => :procLabel,
+              RDF::RDFS.comment => :procComment
           }
        }
     })
     count = 0
-    input_query.execute(graph) do |solution|
+    query.execute(graph) do |solution|
       count += 1
       assert_equal("from_uri", solution.inputLabel.to_s)
       assert_equal("example", solution.inputExample.to_s)
     end
-    assert_equal(1, count, "Could not correctly match input_input_query")
+    assert_equal(1, count, "Could not correctly match input_query")
 
 
 
