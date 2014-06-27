@@ -9,18 +9,14 @@ require 'rdf'
 require 'rdf/turtle'
 require 'tempfile'
 require 'stringio'
+require 'workflow_parser/workflow_processor'
 
-
-module WorkflowProcessors
-  class Interface
-  end
-end
 
 module T2Flow
   GEM_ROOT = File.expand_path(File.join(__FILE__, "..", "..", ".."))
   SCUFL2_WFDESC_JAR = File.expand_path(File.join(GEM_ROOT, "bin", "scufl2-wfdesc-0.3.7-standalone.jar"))
 
-  class WorkflowProcessor
+  class WorkflowProcessor < WorkflowParser::WorkflowProcessor
     # Register Taverna 2 MIME Types
     # TODO: Is this possible without a dependency on actionpack?
     ##require 'action_controller/mime_type'
