@@ -48,10 +48,6 @@ module T2Flow
       [ "t2flow" ]
     end
 
-    def self.default_file_extension
-      "t2flow"
-    end
-
     def self.can_determine_type_from_file?
       true
     end
