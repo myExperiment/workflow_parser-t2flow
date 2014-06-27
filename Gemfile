@@ -6,3 +6,6 @@ gem 'json-ld', :git=>"git@github.com:ruby-rdf/json-ld.git", :ref=>"e729a8cf92379
 
 # Specify your gem's dependencies in taverna-t2flow.gemspec
 gemspec
+
+gem "workflow_parser", :git=>"https://github.com/myExperiment/workflow_parser.git"
+

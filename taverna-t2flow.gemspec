@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "libxml-ruby", "~> 2.6"
   spec.add_runtime_dependency "rdf-turtle", "~> 1.1"
   spec.add_development_dependency "json-ld", "~> 1.1", ">=1.1.6"
+  spec.add_runtime_dependency "workflow_parser", "~> 0.0"
 end
